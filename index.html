@@ -223,7 +223,9 @@
   <h2>Contact Us</h2>
   <p>Appointments are required. Submit a request and we’ll follow up.</p>
     
-<label>Request Type
+    
+  <form id="apptForm">
+    <label>Request Type
   <select name="request_type" required>
     <option value="" disabled selected>Select one…</option>
     <option value="Sales">Sales Inquiry</option>
@@ -231,8 +233,6 @@
     <option value="Appointment">Appointment Request</option>
   </select>
 </label>
-    
-  <form id="apptForm">
     <label>Name
       <input type="text" name="name" required>
     </label>
