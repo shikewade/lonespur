@@ -34,7 +34,7 @@
       background: var(--bg-light);
     }
 
-    /* ---------- TOP BAR (ADDED) ---------- */
+    /* ---------- TOP BAR ---------- */
     .topbar{
       position: sticky;
       top: 0;
@@ -101,7 +101,7 @@
     }
     .btn-primary:hover{ filter: brightness(1.05); }
 
-    /* ---------- HERO (UPDATED) ---------- */
+    /* ---------- HERO ---------- */
     .hero {
       background:
         radial-gradient(900px 520px at 20% 30%, rgba(156,124,58,.35), rgba(0,0,0,0) 62%),
@@ -114,7 +114,6 @@
       overflow: hidden;
     }
 
-    /* subtle "dust/grain" vibe (lightweight, no image) */
     .hero::after{
       content:"";
       position:absolute;
@@ -212,35 +211,20 @@
       border-color: rgba(255,255,255,.38);
     }
 
-    .hero-badges{
-      margin-top: 18px;
-      display:flex;
-      gap:10px;
-      flex-wrap: wrap;
-      color: rgba(255,255,255,.82);
-      font-size: .92rem;
-    }
-    .hero-badges span{
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.22);
-      padding: 7px 11px;
-      border-radius: 999px;
-    }
     .hero-stamp{
-  margin-top: 20px;
-  display: inline-block;
-  padding: 8px 14px;
-  border: 2px solid rgba(255,255,255,.35);
-  color: rgba(255,255,255,.9);
-  font-family: "Oswald", system-ui, sans-serif;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  font-size: 0.85rem;
-  background: rgba(0,0,0,.35);
-  border-radius: 4px;
-}
-
+      margin-top: 20px;
+      display: inline-block;
+      padding: 8px 14px;
+      border: 2px solid rgba(255,255,255,.35);
+      color: rgba(255,255,255,.9);
+      font-family: "Oswald", system-ui, sans-serif;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      background: rgba(0,0,0,.35);
+      border-radius: 4px;
+    }
 
     /* ---------- SECTIONS ---------- */
     .section {
@@ -288,37 +272,34 @@
       letter-spacing: .6px;
       text-transform: uppercase;
     }
-    html { scroll-behavior: smooth; } /* smooth jump to sections */
 
-.service-link{
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  position: relative;
-  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
-}
+    html { scroll-behavior: smooth; }
 
-.service-link:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 14px 34px rgba(0,0,0,.12);
-  border-left-color: var(--accent-2);
-}
-
-.service-link:focus{
-  outline: 3px solid rgba(156,124,58,.35);
-  outline-offset: 3px;
-}
-
-.service-cta{
-  display: inline-block;
-  margin-top: 10px;
-  font-family: "Oswald", system-ui, sans-serif;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: var(--accent-2);
-}
-
+    .service-link{
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+    }
+    .service-link:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px rgba(0,0,0,.12);
+      border-left-color: var(--accent-2);
+    }
+    .service-link:focus{
+      outline: 3px solid rgba(156,124,58,.35);
+      outline-offset: 3px;
+    }
+    .service-cta{
+      display: inline-block;
+      margin-top: 10px;
+      font-family: "Oswald", system-ui, sans-serif;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--accent-2);
+    }
 
     /* ---------- GALLERY ---------- */
     .gallery {
@@ -392,7 +373,7 @@
 
     #formStatus {
       margin-top: 12px;
-      min-height: 1.25em; /* prevents layout jump */
+      min-height: 1.25em;
       color: #8a1f11;
       font-weight: 700;
       font-family: "Oswald", system-ui, sans-serif;
@@ -469,7 +450,6 @@
       background: #000;
     }
 
-    /* Responsive */
     @media (max-width: 640px){
       .topbar-nav a{ display:none; }
       .topbar-nav a.btn-primary{ display:inline-block; }
@@ -479,7 +459,7 @@
 
 <body>
 
-  <!-- TOP BAR (ADDED) -->
+  <!-- TOP BAR -->
   <header class="topbar">
     <div class="topbar-inner">
       <div class="brand">
@@ -494,7 +474,7 @@
     </div>
   </header>
 
-  <!-- HERO (UPDATED) -->
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
       <div class="kicker">Lone Spur Precision</div>
@@ -509,11 +489,8 @@
         <a href="#contact" class="btn-hero">Request an Appointment</a>
         <a href="#services" class="btn-ghost">View Services</a>
       </div>
-      
-      <div class="hero-stamp">
-  Open by appointment only
-      </div>
-     
+
+      <div class="hero-stamp">Open by appointment only</div>
     </div>
   </section>
 
@@ -527,32 +504,32 @@
     </p>
   </section>
 
-  <!-- SERVICES (ID ADDED) -->
+  <!-- SERVICES -->
   <section class="section" id="services">
     <h2>Services</h2>
+
     <div class="services">
-  <a class="service-card service-link" href="#service-custom">
-    <h3>Custom Rifle Builds</h3>
-    <p>Purpose-built rifles tailored to your application and performance goals.</p>
-    <span class="service-cta">Learn more →</span>
-  </a>
+      <a class="service-card service-link" href="#service-custom">
+        <h3>Custom Rifle Builds</h3>
+        <p>Purpose-built rifles tailored to your application and performance goals.</p>
+        <span class="service-cta">Learn more →</span>
+      </a>
 
-  <a class="service-card service-link" href="#service-manufacturing">
-    <h3>Firearm sales and transfers</h3>
-    <p>Firearm sales and transfers by appointment .</p>
-    <span class="service-cta">Learn more →</span>
-  </a>
+      <a class="service-card service-link" href="#service-manufacturing">
+        <h3>Firearm sales and transfers</h3>
+        <p>Firearm sales and transfers by appointment.</p>
+        <span class="service-cta">Learn more →</span>
+      </a>
 
-  <a class="service-card service-link" href="#service-gunsmithing">
-    <h3>Gunsmithing</h3>
-    <p>Repair, service, and optimization of existing firearms.</p>
-    <span class="service-cta">Learn more →</span>
-  </a>
-</div>
+      <a class="service-card service-link" href="#service-gunsmithing">
+        <h3>Gunsmithing</h3>
+        <p>Repair, service, and optimization of existing firearms.</p>
+        <span class="service-cta">Learn more →</span>
+      </a>
     </div>
   </section>
 
-  <!-- GALLERY (ID ADDED) -->
+  <!-- GALLERY -->
   <section class="section" id="gallery">
     <h2>Gallery</h2>
     <div class="gallery">
@@ -563,77 +540,76 @@
   </section>
 
   <!-- SERVICE DETAILS -->
-<section class="section" id="service-custom">
-  <h2>Custom Rifle Builds</h2>
-  <p>
-    Purpose-built rifles designed around your intended use case - hunting, competition, or duty applications.
-    We’ll discuss goals, budget, timeline, and component selection before work begins.
-  </p>
+  <section class="section" id="service-custom">
+    <h2>Custom Rifle Builds</h2>
+    <p>
+      Purpose-built rifles designed around your intended use case - hunting, competition, or duty applications.
+      We’ll discuss goals, budget, timeline, and component selection before work begins.
+    </p>
 
-  <ul>
-    <li>Component selection: barrel, action, trigger, stock/chassis</li>
-    <li>Build planning and clear communication throughout the entire process</li>
-    <li>Final function check with proof of accuracy target</li>
-    <li>Optional accessories including optics, optic mounts/rings, muzzle devices and bipods</li>
-  </ul>
+    <ul>
+      <li>Component selection: barrel, action, trigger, stock/chassis</li>
+      <li>Build planning and clear communication throughout the entire process</li>
+      <li>Final function check with proof of accuracy target</li>
+      <li>Optional accessories including optics, optic mounts/rings, muzzle devices and bipods</li>
+    </ul>
 
-  <p>
-    <a href="#contact" class="btn-ghost">Request a build consultation</a>
-    &nbsp;&nbsp;<a href="#services" class="btn-ghost">Back to Services</a>
-  </p>
-</section>
+    <p>
+      <a href="#contact" class="btn-ghost">Request a build consultation</a>
+      &nbsp;&nbsp;<a href="#services" class="btn-ghost">Back to Services</a>
+    </p>
+  </section>
 
-<section class="section" id="service-manufacturing">
-  <h2>Firearm sales and transfers</h2>
-  <p>
-    Have your firearm purchases delivered to our conveinient central Plano location for Transfer.
-    Please contact us via a transfer request prior to placing your order for our shipping address and FFL information.
-    We may also be able to match or beat a competitors pricing on customer orders!
-  </p>
+  <section class="section" id="service-manufacturing">
+    <h2>Firearm sales and transfers</h2>
+    <p>
+      Have your firearm purchases delivered to our convenient central Plano location for transfer.
+      Please submit a <strong>Firearm Transfer Request</strong> prior to placing your order for our shipping address and FFL information.
+      We may also be able to match or beat a competitor’s pricing on customer orders.
+    </p>
 
-  <ul>
-    <li>Open for transfers by appointment only </li>
-    <li>Convieniently available after work hours</li>
-    <li>Ability to custom order firearms by request</li>
-    <li>In your inquiry please include: what firearm is being transfered, shipping FFLs contact info (Name, Email, Address, Phone number)</li>
-    <li>Please contact us for updated pricing on transfers</li>
-    <li>All sales and transfers subject to a completed 4473 and FBI NICS background check (Unless otherwise exempt due to Texas LTC)</li>
-  </ul>
+    <ul>
+      <li>Open for transfers by appointment only</li>
+      <li>Conveniently available after work hours</li>
+      <li>Ability to custom order firearms by request</li>
+      <li>In your inquiry please include: what firearm is being transferred, shipping FFL’s contact info (Name, Email, Address, Phone number)</li>
+      <li>Please contact us for updated pricing on transfers</li>
+      <li>All sales and transfers subject to a completed 4473 and FBI NICS background check (unless otherwise exempt due to Texas LTC)</li>
+    </ul>
 
-  <p>
-    <a href="#contact" class="btn-ghost">Ask about FFL Transfers</a>
-    &nbsp;&nbsp;<a href="#services" class="btn-ghost">Back to Services</a>
-  </p>
-</section>
+    <p>
+      <a href="#contact" class="btn-ghost">Ask about FFL Transfers</a>
+      &nbsp;&nbsp;<a href="#services" class="btn-ghost">Back to Services</a>
+    </p>
+  </section>
 
-<section class="section" id="service-gunsmithing">
-  <h2>Gunsmithing</h2>
-  <p>
-    Service, repair, and optimization of existing firearms. Describe the firearm, issue, and desired outcome,
-    and we’ll tell you the best next step.
-  </p>
+  <section class="section" id="service-gunsmithing">
+    <h2>Gunsmithing</h2>
+    <p>
+      Service, repair, and optimization of existing firearms. Describe the firearm, issue, and desired outcome,
+      and we’ll tell you the best next step.
+    </p>
 
-  <ul>
-    <li>Diagnostics, repair, and performance improvements</li>
-    <li>Professional workmanship with attention to safety</li>
-    <li>Appointment-based drop off and pickup</li>
-    <li>Scope Mounting and bore sight</li>
-    <li>Gun cleaning</li>
-    <li>Muzzle device installation</li>
-    <li>AR15 assembly from parts</li>
-  </ul>
+    <ul>
+      <li>Diagnostics, repair, and performance improvements</li>
+      <li>Professional workmanship with attention to safety</li>
+      <li>Appointment-based drop off and pickup</li>
+      <li>Scope mounting and bore sight</li>
+      <li>Gun cleaning</li>
+      <li>Muzzle device installation</li>
+      <li>AR15 assembly from parts</li>
+    </ul>
 
-  <p>
-    <a href="#contact" class="btn-ghost">Request service</a>
-    &nbsp;&nbsp;<a href="#services" class="btn-ghost">Back to Services</a>
-  </p>
-</section>
-
+    <p>
+      <a href="#contact" class="btn-ghost">Request service</a>
+      &nbsp;&nbsp;<a href="#services" class="btn-ghost">Back to Services</a>
+    </p>
+  </section>
 
   <!-- CONTACT -->
   <section class="section" id="contact">
     <h2>Contact Us</h2>
-    <p>Please submit a request below for sales, info or appointments.</p>
+    <p>Please submit a request below for sales, transfers, info or appointments.</p>
     <p>Please note, appointments are required for firearm pickup and drop off.</p>
 
     <form id="apptForm">
@@ -643,6 +619,9 @@
           <option value="Sales">Sales Inquiry</option>
           <option value="Information">Information Request</option>
           <option value="Appointment">Appointment Request</option>
+
+          <!-- ✅ ADDED: Firearm Transfer Request -->
+          <option value="Transfer">Firearm Transfer Request</option>
         </select>
       </label>
 
@@ -668,7 +647,6 @@
 
       <button type="submit">Submit Contact Form</button>
 
-      <!-- Inline status used ONLY for errors (success uses popup) -->
       <p id="formStatus" aria-live="polite"></p>
     </form>
 
@@ -705,9 +683,7 @@
         const modalTitle = document.getElementById("modalTitle");
         const modalBody = document.getElementById("modalBody");
 
-        // Stay on page: after popup closes, just return to contact section
         const AFTER_CLOSE_SCROLL_TARGET = "#contact";
-
         let autoCloseTimer = null;
 
         function openModal(title, body) {
@@ -718,7 +694,6 @@
           modal.setAttribute("aria-hidden", "false");
           document.body.style.overflow = "hidden";
 
-          // Auto-scroll to popup + focus it (accessibility)
           setTimeout(() => {
             if (panel) {
               panel.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -727,7 +702,6 @@
             }
           }, 0);
 
-          // Auto-close after 7 seconds
           autoCloseTimer = setTimeout(() => closeModal({ scrollAfter: true }), 7000);
         }
 
@@ -738,7 +712,6 @@
 
           if (autoCloseTimer) clearTimeout(autoCloseTimer);
 
-          // "Redirect" while staying on page: go to the contact anchor
           if (scrollAfter && AFTER_CLOSE_SCROLL_TARGET) {
             window.location.hash = AFTER_CLOSE_SCROLL_TARGET;
             const target = document.querySelector(AFTER_CLOSE_SCROLL_TARGET);
@@ -746,12 +719,10 @@
           }
         }
 
-        // Close modal on backdrop / X / OK
         modal.addEventListener("click", (e) => {
           if (e.target?.dataset?.close === "true") closeModal({ scrollAfter: true });
         });
 
-        // Close on ESC
         document.addEventListener("keydown", (e) => {
           if (e.key === "Escape" && modal.classList.contains("is-open")) {
             closeModal({ scrollAfter: true });
@@ -783,6 +754,15 @@
               body: "Thanks — we have received your request. We’ll be in touch soon."
             };
           }
+
+          /* ✅ ADDED: Transfer success message */
+          if (requestType === "Transfer") {
+            return {
+              title: "Transfer request received",
+              body: "Thanks — we received your firearm transfer request. We’ll follow up with FFL details, next steps, and scheduling."
+            };
+          }
+
           return {
             title: "Request received",
             body: "Thanks — we got your message. We’ll be in touch soon."
@@ -810,7 +790,6 @@
             let data = {};
             try { data = JSON.parse(text); } catch {}
 
-            // Errors => inline only (no popup)
             if (!res.ok) {
               status.textContent = data.error
                 ? `Error (${res.status}): ${data.error}`
@@ -818,7 +797,6 @@
               return;
             }
 
-            // Success => popup only
             status.textContent = "";
 
             const copy = getSuccessCopy(requestType);
@@ -839,6 +817,11 @@
       });
     </script>
 
+    <!--
+      Backend note (so your new secrets get used):
+      Your /api/appointment handler should route Transfer requests to FROM_EMAIL_TRANSFERS / TO_EMAIL_TRANSFERS
+      when request_type === "Transfer".
+    -->
   </section>
 
   <!-- DISCLAIMER -->
@@ -857,6 +840,3 @@
 
 </body>
 </html>
-
-
-
