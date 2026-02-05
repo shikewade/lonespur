@@ -127,13 +127,15 @@
       font-weight: 600;
     }
 
-    input, textarea {
+    input, textarea, select {
       width: 100%;
       padding: 10px;
       margin-top: 6px;
       border-radius: 4px;
       border: 1px solid #ccc;
       font-family: inherit;
+      font-size: 1rem;
+      background: #fff;
     }
 
     button {
@@ -145,6 +147,60 @@
       font-size: 1rem;
       cursor: pointer;
       border-radius: 4px;
+    }
+
+    button:disabled {
+      opacity: 0.75;
+      cursor: not-allowed;
+    }
+
+    #formStatus {
+      margin-top: 12px;
+      min-height: 1.25em; /* prevents layout jump */
+    }
+
+    /* ---------- POPUP MODAL ---------- */
+    .modal { position: fixed; inset: 0; display: none; z-index: 9999; }
+    .modal.is-open { display: block; }
+
+    .modal__backdrop {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,.55);
+    }
+
+    .modal__panel {
+      position: relative;
+      max-width: 520px;
+      margin: 10vh auto;
+      background: #fff;
+      border-radius: 14px;
+      padding: 22px 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.25);
+      outline: none;
+    }
+
+    .modal__title { margin: 0 0 8px; font-size: 1.25rem; }
+    .modal__body { margin: 0 0 16px; line-height: 1.45; }
+
+    .modal__actions { display: flex; justify-content: flex-end; gap: 10px; }
+    .modal__btn {
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 14px;
+      cursor: pointer;
+      background: #111;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .modal__close {
+      position: absolute;
+      top: 10px; right: 12px;
+      border: 0;
+      background: transparent;
+      font-size: 24px;
+      cursor: pointer;
+      line-height: 1;
     }
 
     /* ---------- DISCLAIMER ---------- */
@@ -219,100 +275,216 @@
   </section>
 
   <!-- CONTACT -->
-  <section class="section">
-  <h2>Contact Us</h2>
-  <p>Appointments are required. Submit a request and we’ll follow up.</p>
-    
-    
-  <form id="apptForm">
-    <label>Request Type
-  <select name="request_type" required>
-    <option value="" disabled selected>Select one…</option>
-    <option value="Sales">Sales Inquiry</option>
-    <option value="Information">Information Request</option>
-    <option value="Appointment">Appointment Request</option>
-  </select>
-</label>
-    <label>Name
-      <input type="text" name="name" required>
-    </label>
+  <section class="section" id="contact">
+    <h2>Contact Us</h2>
+    <p>Appointments are required. Submit a request and we’ll follow up.</p>
 
-    <label>Email
-      <input type="email" name="email" required>
-    </label>
+    <form id="apptForm">
+      <label>Request Type
+        <select name="request_type" required>
+          <option value="" disabled selected>Select one…</option>
+          <option value="Sales">Sales Inquiry</option>
+          <option value="Information">Information Request</option>
+          <option value="Appointment">Appointment Request</option>
+        </select>
+      </label>
 
-    <label>Phone (optional)
-      <input type="tel" name="phone">
-    </label>
+      <label>Name
+        <input type="text" name="name" required>
+      </label>
 
-    <label>Message
-      <textarea name="message" rows="5" required></textarea>
-    </label>
+      <label>Email
+        <input type="email" name="email" required>
+      </label>
 
-    <div class="cf-turnstile" data-sitekey="0x4AAAAAACX1GoTVIhQ0xV5o"></div>
+      <label>Phone (optional)
+        <input type="tel" name="phone">
+      </label>
 
-    <input type="text" name="company" style="display:none">
+      <label>Message
+        <textarea name="message" rows="5" required></textarea>
+      </label>
 
-    <button type="submit">Submit Contact Form</button>
-    <p id="formStatus"></p>
-  </form>
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAACX1GoTVIhQ0xV5o"></div>
 
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-  <script>
-  const form = document.getElementById("apptForm");
-  const status = document.getElementById("formStatus");
-  const btn = form.querySelector('button[type="submit"]');
+      <input type="text" name="company" style="display:none">
 
-  function withTimeout(ms) {
-    const controller = new AbortController();
-    const id = setTimeout(() => controller.abort(), ms);
-    return { controller, clear: () => clearTimeout(id) };
-  }
+      <button type="submit">Submit Contact Form</button>
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    status.textContent = "Sending…";
-    btn.disabled = true;
+      <!-- Inline status used ONLY for errors (success uses popup) -->
+      <p id="formStatus" aria-live="polite"></p>
+    </form>
 
-    const t = withTimeout(15000); // 15s safety timeout
+    <!-- POPUP MODAL (success only) -->
+    <div id="submitModal" class="modal" aria-hidden="true">
+      <div class="modal__backdrop" data-close="true"></div>
 
-    try {
-      const res = await fetch("/api/appointment", {
-        method: "POST",
-        body: new FormData(form),
-        signal: t.controller.signal
+      <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button type="button" class="modal__close" aria-label="Close" data-close="true">×</button>
+
+        <h3 id="modalTitle" class="modal__title">Message sent</h3>
+        <p id="modalBody" class="modal__body">We’ll be in touch shortly.</p>
+
+        <div class="modal__actions">
+          <button type="button" class="modal__btn" data-close="true">OK</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Turnstile script -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+    <!-- Form submit behavior -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("apptForm");
+        const status = document.getElementById("formStatus");
+        if (!form) return;
+
+        const btn = form.querySelector('button[type="submit"]');
+
+        const modal = document.getElementById("submitModal");
+        const panel = modal?.querySelector(".modal__panel");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalBody = document.getElementById("modalBody");
+
+        // Stay on page: after popup closes, just return to contact section
+        const AFTER_CLOSE_SCROLL_TARGET = "#contact";
+
+        let autoCloseTimer = null;
+
+        function openModal(title, body) {
+          modalTitle.textContent = title;
+          modalBody.textContent = body;
+
+          modal.classList.add("is-open");
+          modal.setAttribute("aria-hidden", "false");
+          document.body.style.overflow = "hidden";
+
+          // Auto-scroll to popup + focus it (accessibility)
+          setTimeout(() => {
+            if (panel) {
+              panel.scrollIntoView({ behavior: "smooth", block: "center" });
+              panel.setAttribute("tabindex", "-1");
+              panel.focus({ preventScroll: true });
+            }
+          }, 0);
+
+          // Auto-close after 4 seconds
+          autoCloseTimer = setTimeout(() => closeModal({ scrollAfter: true }), 4000);
+        }
+
+        function closeModal({ scrollAfter = true } = {}) {
+          modal.classList.remove("is-open");
+          modal.setAttribute("aria-hidden", "true");
+          document.body.style.overflow = "";
+
+          if (autoCloseTimer) clearTimeout(autoCloseTimer);
+
+          // "Redirect" while staying on page: go to the contact anchor
+          if (scrollAfter && AFTER_CLOSE_SCROLL_TARGET) {
+            // update the hash (acts like a redirect but stays on the page)
+            window.location.hash = AFTER_CLOSE_SCROLL_TARGET;
+            // and smooth scroll to it (more consistent across browsers)
+            const target = document.querySelector(AFTER_CLOSE_SCROLL_TARGET);
+            if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }
+
+        // Close modal on backdrop / X / OK
+        modal.addEventListener("click", (e) => {
+          if (e.target?.dataset?.close === "true") closeModal({ scrollAfter: true });
+        });
+
+        // Close on ESC
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && modal.classList.contains("is-open")) {
+            closeModal({ scrollAfter: true });
+          }
+        });
+
+        function withTimeout(ms) {
+          const controller = new AbortController();
+          const id = setTimeout(() => controller.abort(), ms);
+          return { controller, clear: () => clearTimeout(id) };
+        }
+
+        function getSuccessCopy(requestType) {
+          if (requestType === "Sales") {
+            return {
+              title: "Sales inquiry received",
+              body: "Thank you — we have received your sales inquiry. We’ll reach out shortly with next steps and availability."
+            };
+          }
+          if (requestType === "Appointment") {
+            return {
+              title: "Appointment request received",
+              body: "Thanks — we have received your appointment request. We’ll follow up to confirm details and scheduling."
+            };
+          }
+          if (requestType === "Information") {
+            return {
+              title: "Information Request received",
+              body: "Thanks — we have received your request. We’ll be in touch soon."
+            };
+          }
+          return {
+            title: "Request received",
+            body: "Thanks — we got your message. We’ll be in touch soon."
+          };
+        }
+
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          status.textContent = "Sending…";
+          btn.disabled = true;
+
+          const t = withTimeout(15000);
+
+          try {
+            const formData = new FormData(form);
+            const requestType = (formData.get("request_type") || "").toString();
+
+            const res = await fetch("/api/appointment", {
+              method: "POST",
+              body: formData,
+              signal: t.controller.signal
+            });
+
+            const text = await res.text();
+            let data = {};
+            try { data = JSON.parse(text); } catch {}
+
+            // Errors => inline only (no popup)
+            if (!res.ok) {
+              status.textContent = data.error
+                ? `Error (${res.status}): ${data.error}`
+                : `Error (${res.status}). Please try again.`;
+              return;
+            }
+
+            // Success => popup only
+            status.textContent = "";
+
+            const copy = getSuccessCopy(requestType);
+            openModal(copy.title, copy.body);
+
+            form.reset();
+
+          } catch (err) {
+            status.textContent = err.name === "AbortError"
+              ? "Timed out. Please try again."
+              : "Network error. Please try again.";
+          } finally {
+            t.clear();
+            if (window.turnstile) window.turnstile.reset();
+            btn.disabled = false;
+          }
+        });
       });
+    </script>
 
-      const text = await res.text(); // read raw first
-      let data = {};
-      try { data = JSON.parse(text); } catch {}
-
-      if (!res.ok) {
-        status.textContent = data.error
-          ? `Error (${res.status}): ${data.error}`
-          : `Error (${res.status}). Please try again.`;
-        return;
-      }
-
-      // Success
-      status.textContent = "Request received. We’ll be in touch.";
-      form.reset();
-      // Optional redirect:
-      // window.location.href = "/thank-you.html";
-    } catch (err) {
-      status.textContent = err.name === "AbortError"
-        ? "Timed out. Please try again."
-        : "Network error. Please try again.";
-    } finally {
-      t.clear();
-      if (window.turnstile) window.turnstile.reset();
-      btn.disabled = false;
-    }
-  });
-</script>
-
-</section>
-
+  </section>
 
   <!-- DISCLAIMER -->
   <section class="disclaimer">
@@ -330,4 +502,5 @@
 
 </body>
 </html>
+
 
