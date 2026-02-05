@@ -288,6 +288,37 @@
       letter-spacing: .6px;
       text-transform: uppercase;
     }
+    html { scroll-behavior: smooth; } /* smooth jump to sections */
+
+.service-link{
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+
+.service-link:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(0,0,0,.12);
+  border-left-color: var(--accent-2);
+}
+
+.service-link:focus{
+  outline: 3px solid rgba(156,124,58,.35);
+  outline-offset: 3px;
+}
+
+.service-cta{
+  display: inline-block;
+  margin-top: 10px;
+  font-family: "Oswald", system-ui, sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--accent-2);
+}
+
 
     /* ---------- GALLERY ---------- */
     .gallery {
@@ -500,18 +531,24 @@
   <section class="section" id="services">
     <h2>Services</h2>
     <div class="services">
-      <div class="service-card">
-        <h3>Custom Rifle Builds</h3>
-        <p>Purpose-built rifles tailored to your application and performance goals.</p>
-      </div>
-      <div class="service-card">
-        <h3>FFL Transfers</h3>
-        <p>Have your firearms shipped to Lone Spur Precision for FFL transfers.</p>
-      </div>
-      <div class="service-card">
-        <h3>Gunsmithing</h3>
-        <p>Repair, service, and cleaning of customer firearms.</p>
-      </div>
+  <a class="service-card service-link" href="#service-custom">
+    <h3>Custom Rifle Builds</h3>
+    <p>Purpose-built rifles tailored to your application and performance goals.</p>
+    <span class="service-cta">Learn more →</span>
+  </a>
+
+  <a class="service-card service-link" href="#service-manufacturing">
+    <h3>Firearms Manufacturing</h3>
+    <p>Precision made rifle actions and lower receivers.</p>
+    <span class="service-cta">Learn more →</span>
+  </a>
+
+  <a class="service-card service-link" href="#service-gunsmithing">
+    <h3>Gunsmithing</h3>
+    <p>Repair, service, and optimization of existing firearms.</p>
+    <span class="service-cta">Learn more →</span>
+  </a>
+</div>
     </div>
   </section>
 
@@ -524,6 +561,65 @@
       <img src="https://images.unsplash.com/photo-1601933470928-c54fd49a88b8?auto=format&fit=crop&w=800&q=80" alt="Rifle detail">
     </div>
   </section>
+
+  <!-- SERVICE DETAILS -->
+<section class="section" id="service-custom">
+  <h2>Custom Rifle Builds</h2>
+  <p>
+    Purpose-built rifles designed around your intended use—hunting, competition, or duty applications.
+    We’ll discuss goals, budget, timeline, and component selection before work begins.
+  </p>
+
+  <ul>
+    <li>Component selection: barrel, action, trigger, stock/chassis</li>
+    <li>Build planning and clear communication throughout</li>
+    <li>Final function check and basic setup guidance</li>
+  </ul>
+
+  <p>
+    <a href="#contact" class="btn-ghost">Request a build consult</a>
+    &nbsp;&nbsp;<a href="#services" class="btn-ghost">Back to Services</a>
+  </p>
+</section>
+
+<section class="section" id="service-manufacturing">
+  <h2>Firearms Manufacturing</h2>
+  <p>
+    Precision manufacturing with a focus on fit, finish, and reliability. If you’re looking for
+    specific components or have a technical question, send a request and we’ll follow up.
+  </p>
+
+  <ul>
+    <li>Rifle actions and lower receivers (as offered)</li>
+    <li>Dimensional consistency and QC-driven process</li>
+    <li>Project consultation for compatibility and application</li>
+  </ul>
+
+  <p>
+    <a href="#contact" class="btn-ghost">Ask about manufacturing</a>
+    &nbsp;&nbsp;<a href="#services" class="btn-ghost">Back to Services</a>
+  </p>
+</section>
+
+<section class="section" id="service-gunsmithing">
+  <h2>Gunsmithing</h2>
+  <p>
+    Service, repair, and optimization of existing firearms. Describe the firearm, issue, and desired outcome,
+    and we’ll tell you the best next step.
+  </p>
+
+  <ul>
+    <li>Diagnostics, repair, and performance improvements</li>
+    <li>Professional workmanship with attention to safety</li>
+    <li>Appointment-based drop off and pickup</li>
+  </ul>
+
+  <p>
+    <a href="#contact" class="btn-ghost">Request service</a>
+    &nbsp;&nbsp;<a href="#services" class="btn-ghost">Back to Services</a>
+  </p>
+</section>
+
 
   <!-- CONTACT -->
   <section class="section" id="contact">
