@@ -253,31 +253,64 @@
 
     <input type="text" name="company" style="display:none">
 
-    <button type="submit">Request Information</button>
+    <button type="submit">Submit Contact Form</button>
     <p id="formStatus"></p>
   </form>
 
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <script>
-    const form = document.getElementById("apptForm");
-    const status = document.getElementById("formStatus");
+  const form = document.getElementById("apptForm");
+  const status = document.getElementById("formStatus");
+  const btn = form.querySelector('button[type="submit"]');
 
-    form.addEventListener("submit", async e => {
-      e.preventDefault();
-      status.textContent = "Sending…";
+  function withTimeout(ms) {
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), ms);
+    return { controller, clear: () => clearTimeout(id) };
+  }
 
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    status.textContent = "Sending…";
+    btn.disabled = true;
+
+    const t = withTimeout(15000); // 15s safety timeout
+
+    try {
       const res = await fetch("/api/appointment", {
         method: "POST",
-        body: new FormData(form)
+        body: new FormData(form),
+        signal: t.controller.signal
       });
 
-      const data = await res.json();
-      status.textContent = res.ok
-        ? "Request received. We’ll be in touch."
-        : "Something went wrong. Please try again.";
-      if (res.ok) form.reset();
-    });
-  </script>
+      const text = await res.text(); // read raw first
+      let data = {};
+      try { data = JSON.parse(text); } catch {}
+
+      if (!res.ok) {
+        status.textContent = data.error
+          ? `Error (${res.status}): ${data.error}`
+          : `Error (${res.status}). Please try again.`;
+        return;
+      }
+
+      // Success
+      status.textContent = "Request received. We’ll be in touch.";
+      form.reset();
+      // Optional redirect:
+      // window.location.href = "/thank-you.html";
+    } catch (err) {
+      status.textContent = err.name === "AbortError"
+        ? "Timed out. Please try again."
+        : "Network error. Please try again.";
+    } finally {
+      t.clear();
+      if (window.turnstile) window.turnstile.reset();
+      btn.disabled = false;
+    }
+  });
+</script>
+
 </section>
 
 
