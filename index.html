@@ -220,25 +220,57 @@
 
   <!-- CONTACT -->
   <section class="section">
-    <h2>Request an Appointment</h2>
-    <p>Appointments are required. Submit a request and we’ll follow up.</p>
+  <h2>Request an Appointment</h2>
+  <p>Appointments are required. Submit a request and we’ll follow up.</p>
 
-    <form action="mailto:Wade@LoneSpurPrecision.com" method="post" enctype="text/plain">
-      <label>Name
-        <input type="text" name="name" required>
-      </label>
+  <form id="apptForm">
+    <label>Name
+      <input type="text" name="name" required>
+    </label>
 
-      <label>Email
-        <input type="email" name="email" required>
-      </label>
+    <label>Email
+      <input type="email" name="email" required>
+    </label>
 
-      <label>Message
-        <textarea name="message" rows="4"></textarea>
-      </label>
+    <label>Phone (optional)
+      <input type="tel" name="phone">
+    </label>
 
-      <button type="submit">Send Request</button>
-    </form>
-  </section>
+    <label>Message
+      <textarea name="message" rows="5" required></textarea>
+    </label>
+
+    <div class="cf-turnstile" data-sitekey="0x4AAAAAACX1GoTVIhQ0xV5o"></div>
+
+    <input type="text" name="company" style="display:none">
+
+    <button type="submit">Request Information</button>
+    <p id="formStatus"></p>
+  </form>
+
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script>
+    const form = document.getElementById("apptForm");
+    const status = document.getElementById("formStatus");
+
+    form.addEventListener("submit", async e => {
+      e.preventDefault();
+      status.textContent = "Sending…";
+
+      const res = await fetch("/api/appointment", {
+        method: "POST",
+        body: new FormData(form)
+      });
+
+      const data = await res.json();
+      status.textContent = res.ok
+        ? "Request received. We’ll be in touch."
+        : "Something went wrong. Please try again.";
+      if (res.ok) form.reset();
+    });
+  </script>
+</section>
+
 
   <!-- DISCLAIMER -->
   <section class="disclaimer">
