@@ -15,7 +15,9 @@ export async function onRequestPost({ request, env }) {
     const token = (form.get("cf-turnstile-response") || "").toString().trim();
 
     const requestType = (form.get("request_type") || "").toString().trim();
-    const allowedTypes = ["Sales", "Information", "Appointment"];
+
+    // ✅ ADDED: Transfer
+    const allowedTypes = ["Sales", "Information", "Appointment", "Transfer"];
 
     // Validate required fields
     if (!name || !email || !message) {
@@ -49,13 +51,19 @@ export async function onRequestPost({ request, env }) {
     const toByType = {
       Sales: env.TO_EMAIL_SALES,
       Information: env.TO_EMAIL_INFO,
-      Appointment: env.TO_EMAIL_APPOINTMENT
+      Appointment: env.TO_EMAIL_APPOINTMENT,
+
+      // ✅ ADDED: Transfer mapping to your new secrets
+      Transfer: env.TO_EMAIL_TRANSFERS
     };
 
     const fromByType = {
       Sales: env.FROM_EMAIL_SALES,
       Information: env.FROM_EMAIL_INFO,
-      Appointment: env.FROM_EMAIL_APPOINTMENT
+      Appointment: env.FROM_EMAIL_APPOINTMENT,
+
+      // ✅ ADDED: Transfer mapping to your new secrets
+      Transfer: env.FROM_EMAIL_TRANSFERS
     };
 
     const toEmail = toByType[requestType] || env.TO_EMAIL;
@@ -141,5 +149,3 @@ function json(data, status = 200) {
     headers: { "Content-Type": "application/json" }
   });
 }
-
-
