@@ -18,32 +18,29 @@
 
   <style>
     :root {
-      --bg-page: #f3f1ec;
-      --bg-soft: #ebe7df;
-      --bg-dark: #0c0d0f;
-      --bg-dark-2: #121417;
-      --bg-card: #ffffff;
-      --bg-card-2: #fbfaf8;
-      --metal: #23272d;
-      --metal-2: #313741;
+      --bg-page: #111315;
+      --bg-page-2: #171a1d;
+      --bg-panel: #1b1f23;
+      --bg-panel-2: #20252b;
+      --bg-card: #22272d;
+      --bg-card-light: #f4f1ea;
       --accent: #a88444;
       --accent-2: #7b5b28;
-      --accent-3: #d4b478;
-      --text-dark: #141516;
-      --text-soft: #5f605f;
-      --text-light: #f3f2ef;
-      --text-muted-light: rgba(255,255,255,.72);
-      --line: rgba(18, 20, 23, .10);
+      --accent-3: #d2b175;
+      --text-light: #f3f1eb;
+      --text-muted: rgba(255,255,255,.72);
+      --text-dark: #151618;
+      --text-soft-dark: #5f625f;
       --line-light: rgba(255,255,255,.10);
-      --success: #254a33;
-      --danger: #8a1f11;
-      --max-width: 1180px;
-      --radius: 18px;
-      --radius-sm: 10px;
-      --header-height: 88px;
-      --shadow-soft: 0 18px 45px rgba(0,0,0,.12);
-      --shadow-strong: 0 18px 40px rgba(0,0,0,.24);
-      --shadow-btn: 0 10px 26px rgba(0,0,0,.22);
+      --line-dark: rgba(255,255,255,.08);
+      --line-dark-2: rgba(0,0,0,.10);
+      --max-width: 1160px;
+      --header-height: 86px;
+      --radius: 22px;
+      --radius-sm: 12px;
+      --shadow-soft: 0 16px 40px rgba(0,0,0,.18);
+      --shadow-strong: 0 20px 44px rgba(0,0,0,.28);
+      --shadow-btn: 0 12px 26px rgba(0,0,0,.22);
     }
 
     * { box-sizing: border-box; }
@@ -54,10 +51,10 @@
       margin: 0;
       font-family: "Libre Baskerville", Georgia, serif;
       line-height: 1.65;
-      color: var(--text-dark);
+      color: var(--text-light);
       background:
-        radial-gradient(circle at top left, rgba(255,255,255,.65), transparent 28%),
-        linear-gradient(180deg, #f5f3ef 0%, #efebe4 100%);
+        radial-gradient(circle at top left, rgba(255,255,255,.03), transparent 20%),
+        linear-gradient(180deg, var(--bg-page) 0%, var(--bg-page-2) 100%);
     }
 
     img {
@@ -74,38 +71,15 @@
       margin: 0 auto;
     }
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      color: rgba(255,255,255,.88);
-      font-family: "Oswald", system-ui, sans-serif;
-      font-size: .78rem;
-      font-weight: 600;
-      letter-spacing: 1.4px;
-      text-transform: uppercase;
-    }
-
-    .eyebrow.dark {
-      background: rgba(168,132,68,.08);
-      border-color: rgba(168,132,68,.22);
-      color: var(--accent-2);
-    }
-
     .section {
-      position: relative;
-      padding: 84px 0;
+      padding: 82px 0;
     }
 
-    .section.alt {
+    .section.dark-band {
       background:
-        linear-gradient(180deg, rgba(255,255,255,.68), rgba(255,255,255,.88));
-      border-top: 1px solid rgba(0,0,0,.03);
-      border-bottom: 1px solid rgba(0,0,0,.03);
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+      border-top: 1px solid var(--line-dark);
+      border-bottom: 1px solid var(--line-dark);
     }
 
     .section-header {
@@ -114,55 +88,141 @@
     }
 
     .section-header h2 {
-      margin: 14px 0 12px;
+      margin: 0 0 12px;
       font-family: "Oswald", system-ui, sans-serif;
-      font-size: clamp(2rem, 4vw, 2.9rem);
-      line-height: 1.05;
+      font-size: clamp(2rem, 4.2vw, 2.9rem);
+      line-height: 1.04;
       letter-spacing: 1px;
       text-transform: uppercase;
+      color: #fff;
     }
 
     .section-header p {
       margin: 0;
-      color: var(--text-soft);
+      color: var(--text-muted);
       font-size: 1rem;
     }
 
     .divider-line {
-      width: 88px;
+      width: 86px;
       height: 3px;
       border-radius: 999px;
+      margin-top: 12px;
       background: linear-gradient(90deg, var(--accent), var(--accent-3));
-      margin-top: 10px;
     }
 
-    /* ---------- UTILITY BAR ---------- */
+    .eyebrow-dark {
+      display: inline-block;
+      margin-bottom: 14px;
+      color: var(--accent-3);
+      font-family: "Oswald", system-ui, sans-serif;
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    .btn-primary,
+    .btn-secondary,
+    .btn-ghost,
+    .btn-phone {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 12px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-family: "Oswald", system-ui, sans-serif;
+      font-size: .94rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition: transform .2s ease, filter .2s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(180deg, var(--accent-3) 0%, var(--accent-2) 100%);
+      color: #17120b;
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow-btn);
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(180deg, #252a31 0%, #171a1e 100%);
+      border: 1px solid rgba(255,255,255,.10);
+      color: #fff;
+      box-shadow: 0 10px 22px rgba(0,0,0,.18);
+    }
+
+    .btn-secondary:hover,
+    .btn-secondary:focus-visible {
+      background: linear-gradient(180deg, #2d333b 0%, #1b1e22 100%);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      color: #fff;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.16);
+    }
+
+    .btn-ghost:hover,
+    .btn-ghost:focus-visible {
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.24);
+      transform: translateY(-1px);
+    }
+
+    .btn-phone {
+      color: #fff;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.14);
+    }
+
+    .btn-phone:hover,
+    .btn-phone:focus-visible {
+      background: rgba(255,255,255,.10);
+      transform: translateY(-1px);
+    }
+
+    .inline-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
     .utility-bar {
-      background:
-        linear-gradient(180deg, rgba(8,9,11,.98), rgba(16,18,21,.98));
-      color: rgba(255,255,255,.82);
+      background: linear-gradient(180deg, rgba(8,9,11,.98), rgba(13,15,17,.98));
+      color: rgba(255,255,255,.84);
       border-bottom: 1px solid rgba(255,255,255,.06);
     }
 
     .utility-inner {
-      min-height: 46px;
+      min-height: 44px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
+      gap: 16px;
       font-size: .88rem;
     }
 
-    .utility-left,
-    .utility-right {
+    .utility-left {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
       flex-wrap: wrap;
     }
 
-    .utility-pill,
-    .utility-link {
+    .utility-link,
+    .utility-pill {
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -174,10 +234,10 @@
     .utility-pill strong {
       color: #fff;
       font-family: "Oswald", system-ui, sans-serif;
-      font-weight: 600;
-      letter-spacing: .7px;
-      text-transform: uppercase;
       font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .8px;
+      text-transform: uppercase;
     }
 
     .utility-sep {
@@ -186,12 +246,11 @@
       background: rgba(255,255,255,.14);
     }
 
-    /* ---------- HEADER ---------- */
     .topbar {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(10, 11, 13, .84);
+      background: rgba(10, 11, 13, .86);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(255,255,255,.08);
@@ -199,8 +258,8 @@
     }
 
     .topbar.scrolled {
-      background: rgba(9, 10, 12, .96);
-      box-shadow: 0 14px 32px rgba(0,0,0,.22);
+      background: rgba(9, 10, 12, .97);
+      box-shadow: 0 14px 32px rgba(0,0,0,.24);
       border-bottom-color: rgba(255,255,255,.10);
     }
 
@@ -227,7 +286,7 @@
       flex: 0 0 56px;
       padding: 6px;
       border-radius: 12px;
-      background: linear-gradient(180deg, #f8f8f7, #e9e6df);
+      background: linear-gradient(180deg, #f6f5f1, #e4e0d8);
       border: 1px solid rgba(255,255,255,.18);
       box-shadow:
         0 10px 24px rgba(0,0,0,.24),
@@ -253,15 +312,15 @@
       font-family: "Oswald", system-ui, sans-serif;
       font-size: 1.18rem;
       font-weight: 700;
-      letter-spacing: 2.6px;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
       white-space: nowrap;
     }
 
     .brand-tag {
-      color: var(--text-muted-light);
+      color: var(--text-muted);
       font-size: .73rem;
-      letter-spacing: .45px;
+      letter-spacing: .4px;
       white-space: nowrap;
     }
 
@@ -311,79 +370,6 @@
     .topbar-nav a:hover::after,
     .topbar-nav a:focus-visible::after {
       transform: scaleX(1);
-    }
-
-    .btn-primary,
-    .btn-secondary,
-    .btn-ghost,
-    .btn-phone {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      min-height: 46px;
-      padding: 12px 18px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-family: "Oswald", system-ui, sans-serif;
-      font-size: .94rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      transition: transform .2s ease, filter .2s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      background: linear-gradient(180deg, var(--accent-3) 0%, var(--accent-2) 100%);
-      color: #151310;
-      border: 1px solid rgba(255,255,255,.10);
-      box-shadow: var(--shadow-btn);
-    }
-
-    .btn-primary:hover,
-    .btn-primary:focus-visible {
-      filter: brightness(1.05);
-      transform: translateY(-1px);
-      box-shadow: 0 14px 30px rgba(0,0,0,.26);
-    }
-
-    .btn-phone {
-      background: rgba(255,255,255,.06);
-      color: #fff;
-      border: 1px solid rgba(255,255,255,.14);
-    }
-
-    .btn-phone:hover,
-    .btn-phone:focus-visible {
-      background: rgba(255,255,255,.10);
-      transform: translateY(-1px);
-    }
-
-    .btn-secondary {
-      background: linear-gradient(180deg, #191b20 0%, #0f1012 100%);
-      border: 1px solid rgba(255,255,255,.10);
-      color: #fff;
-      box-shadow: 0 10px 22px rgba(0,0,0,.18);
-    }
-
-    .btn-secondary:hover,
-    .btn-secondary:focus-visible {
-      background: linear-gradient(180deg, #20242b 0%, #111317 100%);
-      transform: translateY(-1px);
-    }
-
-    .btn-ghost {
-      color: #fff;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.18);
-    }
-
-    .btn-ghost:hover,
-    .btn-ghost:focus-visible {
-      background: rgba(255,255,255,.09);
-      border-color: rgba(255,255,255,.28);
-      transform: translateY(-1px);
     }
 
     .menu-toggle {
@@ -492,13 +478,12 @@
       font-size: .82rem;
     }
 
-    /* ---------- HERO ---------- */
     .hero {
       position: relative;
-      min-height: calc(100vh - var(--header-height) - 46px);
+      min-height: calc(100vh - var(--header-height) - 44px);
       color: var(--text-light);
       background:
-        linear-gradient(180deg, rgba(5,6,8,.36), rgba(5,6,8,.66)),
+        linear-gradient(180deg, rgba(5,6,8,.34), rgba(5,6,8,.70)),
         url("/images/gm-background.png");
       background-size: cover;
       background-position: center;
@@ -511,9 +496,8 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at 20% 18%, rgba(255,255,255,.06), transparent 28%),
-        radial-gradient(circle at 82% 28%, rgba(255,255,255,.04), transparent 26%),
-        linear-gradient(120deg, rgba(255,255,255,.025) 0%, transparent 18%, transparent 82%, rgba(255,255,255,.02) 100%);
+        radial-gradient(circle at 20% 18%, rgba(255,255,255,.05), transparent 28%),
+        radial-gradient(circle at 82% 28%, rgba(255,255,255,.03), transparent 26%);
       pointer-events: none;
     }
 
@@ -522,7 +506,7 @@
       position: absolute;
       inset: auto 0 0 0;
       height: 120px;
-      background: linear-gradient(180deg, rgba(15,16,19,0), rgba(15,16,19,.36));
+      background: linear-gradient(180deg, rgba(15,16,19,0), rgba(15,16,19,.44));
       pointer-events: none;
     }
 
@@ -531,10 +515,10 @@
       z-index: 1;
       min-height: inherit;
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(300px, .68fr);
+      grid-template-columns: minmax(0, 1.12fr) minmax(300px, .68fr);
       align-items: center;
       gap: 42px;
-      padding: 74px 0 60px;
+      padding: 58px 0 50px;
     }
 
     .hero-copy {
@@ -542,10 +526,10 @@
     }
 
     .hero-logo {
-      width: min(520px, 88%);
-      margin: 0 0 18px;
+      width: min(620px, 96%);
+      margin: 0 0 12px;
       filter:
-        drop-shadow(0 12px 28px rgba(0,0,0,.42))
+        drop-shadow(0 14px 30px rgba(0,0,0,.42))
         drop-shadow(0 0 18px rgba(255,255,255,.05));
     }
 
@@ -556,9 +540,9 @@
     }
 
     .hero h1 {
-      margin: 16px 0 12px;
+      margin: 18px 0 12px;
       font-family: "Oswald", system-ui, sans-serif;
-      font-size: clamp(2.65rem, 5.4vw, 4.7rem);
+      font-size: clamp(2.7rem, 5.7vw, 4.9rem);
       line-height: .98;
       letter-spacing: 1.2px;
       text-transform: uppercase;
@@ -568,8 +552,8 @@
     .hero-subtitle {
       max-width: 720px;
       margin: 0;
-      color: rgba(255,255,255,.90);
-      font-size: 1.06rem;
+      color: rgba(255,255,255,.88);
+      font-size: 1.05rem;
       text-shadow: 0 4px 16px rgba(0,0,0,.28);
     }
 
@@ -591,11 +575,10 @@
     .hero-meta .chip {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
       min-height: 38px;
       padding: 8px 12px;
       border-radius: 999px;
-      background: rgba(255,255,255,.06);
+      background: rgba(255,255,255,.05);
       border: 1px solid rgba(255,255,255,.12);
       color: rgba(255,255,255,.92);
       font-size: .83rem;
@@ -603,28 +586,29 @@
 
     .hero-sidecard {
       background:
-        linear-gradient(180deg, rgba(22,24,28,.88), rgba(13,14,16,.92));
-      border: 1px solid rgba(255,255,255,.10);
+        linear-gradient(180deg, rgba(20,22,26,.82), rgba(12,13,16,.90));
+      border: 1px solid rgba(255,255,255,.08);
       border-radius: 22px;
       padding: 26px;
       box-shadow: var(--shadow-strong);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
     .hero-sidecard h2 {
-      margin: 14px 0 10px;
+      margin: 0 0 10px;
       font-family: "Oswald", system-ui, sans-serif;
       font-size: 1.7rem;
       line-height: 1.02;
       letter-spacing: .8px;
       text-transform: uppercase;
+      color: #fff;
     }
 
     .hero-sidecard p {
       margin: 0 0 18px;
-      color: rgba(255,255,255,.82);
-      font-size: .97rem;
+      color: rgba(255,255,255,.80);
+      font-size: .96rem;
     }
 
     .quick-list {
@@ -639,7 +623,7 @@
       display: flex;
       align-items: flex-start;
       gap: 10px;
-      color: rgba(255,255,255,.92);
+      color: rgba(255,255,255,.90);
       font-size: .95rem;
     }
 
@@ -652,29 +636,16 @@
     }
 
     .hero-sidecard-actions {
-      display: grid;
+      display: flex;
+      flex-wrap: wrap;
       gap: 10px;
       margin-top: 20px;
     }
 
-    .hero-phone {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 16px;
-      color: #fff;
-      text-decoration: none;
-      font-family: "Oswald", system-ui, sans-serif;
-      font-size: 1rem;
-      letter-spacing: .8px;
-      text-transform: uppercase;
-    }
-
-    /* ---------- TRUST STRIP ---------- */
     .trust-strip {
       position: relative;
       z-index: 2;
-      margin-top: -26px;
+      margin-top: -22px;
     }
 
     .trust-grid {
@@ -684,15 +655,15 @@
     }
 
     .trust-card {
-      background: rgba(255,255,255,.92);
-      border: 1px solid rgba(0,0,0,.06);
+      background: linear-gradient(180deg, #1f242a, #171b20);
+      border: 1px solid rgba(255,255,255,.08);
       border-radius: 18px;
       padding: 18px;
       box-shadow: var(--shadow-soft);
     }
 
     .trust-card .label {
-      color: var(--text-soft);
+      color: rgba(255,255,255,.58);
       font-size: .82rem;
       text-transform: uppercase;
       letter-spacing: .8px;
@@ -702,13 +673,13 @@
     .trust-card .value {
       margin-top: 6px;
       font-family: "Oswald", system-ui, sans-serif;
-      font-size: 1.18rem;
+      font-size: 1.16rem;
       line-height: 1.05;
       text-transform: uppercase;
       letter-spacing: .7px;
+      color: #fff;
     }
 
-    /* ---------- INTRO ---------- */
     .intro-layout {
       display: grid;
       grid-template-columns: minmax(0, 1.05fr) minmax(300px, .95fr);
@@ -718,8 +689,8 @@
 
     .intro-card,
     .aside-card {
-      background: rgba(255,255,255,.78);
-      border: 1px solid rgba(0,0,0,.06);
+      background: linear-gradient(180deg, #1d2228, #181c21);
+      border: 1px solid rgba(255,255,255,.08);
       border-radius: 22px;
       box-shadow: var(--shadow-soft);
     }
@@ -730,7 +701,7 @@
 
     .intro-card p {
       margin: 0 0 16px;
-      color: var(--text-soft);
+      color: var(--text-muted);
     }
 
     .intro-highlight {
@@ -741,6 +712,7 @@
 
     .intro-highlight h3 {
       margin: 0;
+      color: #fff;
       font-family: "Oswald", system-ui, sans-serif;
       font-size: 1.45rem;
       text-transform: uppercase;
@@ -754,7 +726,7 @@
 
     .mini-point {
       padding: 14px 0;
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid rgba(255,255,255,.08);
     }
 
     .mini-point:last-child {
@@ -768,15 +740,15 @@
       text-transform: uppercase;
       letter-spacing: .7px;
       margin-bottom: 4px;
+      color: #fff;
     }
 
     .mini-point p {
       margin: 0;
-      color: var(--text-soft);
+      color: var(--text-muted);
       font-size: .95rem;
     }
 
-    /* ---------- SERVICES ---------- */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -794,9 +766,8 @@
       display: flex;
       flex-direction: column;
       height: 100%;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.96), rgba(250,248,244,.98));
-      border: 1px solid rgba(0,0,0,.06);
+      background: linear-gradient(180deg, #1d2228, #171b20);
+      border: 1px solid rgba(255,255,255,.08);
       border-radius: 22px;
       padding: 28px;
       box-shadow: var(--shadow-soft);
@@ -806,8 +777,8 @@
     .service-link:hover .service-card,
     .service-link:focus-visible .service-card {
       transform: translateY(-5px);
-      box-shadow: 0 22px 45px rgba(0,0,0,.14);
-      border-color: rgba(168,132,68,.22);
+      box-shadow: 0 22px 45px rgba(0,0,0,.20);
+      border-color: rgba(168,132,68,.24);
     }
 
     .service-icon {
@@ -822,7 +793,7 @@
       font-family: "Oswald", system-ui, sans-serif;
       font-size: .95rem;
       font-weight: 700;
-      color: var(--accent-2);
+      color: var(--accent-3);
       letter-spacing: .8px;
       text-transform: uppercase;
     }
@@ -834,11 +805,12 @@
       text-transform: uppercase;
       line-height: 1.02;
       letter-spacing: .7px;
+      color: #fff;
     }
 
     .service-card p {
       margin: 0 0 14px;
-      color: var(--text-soft);
+      color: var(--text-muted);
       flex-grow: 1;
     }
 
@@ -850,10 +822,9 @@
       font-size: .9rem;
       text-transform: uppercase;
       letter-spacing: 1px;
-      color: var(--accent-2);
+      color: var(--accent-3);
     }
 
-    /* ---------- GALLERY ---------- */
     .gallery-shell {
       display: grid;
       grid-template-columns: 1.15fr .85fr;
@@ -879,7 +850,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.42));
+      background: linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.46));
       pointer-events: none;
     }
 
@@ -923,7 +894,6 @@
       object-fit: cover;
     }
 
-    /* ---------- DETAIL SECTIONS ---------- */
     .detail-grid {
       display: grid;
       gap: 22px;
@@ -931,24 +901,44 @@
 
     .detail-card {
       display: grid;
-      grid-template-columns: 280px minmax(0, 1fr);
+      grid-template-columns: 300px minmax(0, 1fr);
       gap: 28px;
       padding: 30px;
-      background: rgba(255,255,255,.84);
-      border: 1px solid rgba(0,0,0,.06);
+      background: linear-gradient(180deg, #1c2127, #161a1f);
+      border: 1px solid rgba(255,255,255,.08);
       border-radius: 24px;
       box-shadow: var(--shadow-soft);
     }
 
     .detail-aside {
-      background: linear-gradient(180deg, #14181d, #0f1216);
-      color: #fff;
+      position: relative;
       border-radius: 18px;
       padding: 22px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       gap: 18px;
+      overflow: hidden;
+      min-height: 260px;
+      background:
+        linear-gradient(180deg, rgba(8,10,12,.45), rgba(8,10,12,.72)),
+        url("/images/gm-background.png");
+      background-size: cover;
+      background-position: center;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .detail-aside::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.18));
+      pointer-events: none;
+    }
+
+    .detail-aside > * {
+      position: relative;
+      z-index: 1;
     }
 
     .detail-aside .kicker {
@@ -961,6 +951,7 @@
 
     .detail-aside h3 {
       margin: 0;
+      color: #fff;
       font-family: "Oswald", system-ui, sans-serif;
       font-size: 1.7rem;
       line-height: 1.02;
@@ -970,27 +961,19 @@
 
     .detail-body p {
       margin-top: 0;
-      color: var(--text-soft);
+      color: var(--text-muted);
     }
 
     .detail-body ul {
       margin: 0 0 18px;
       padding-left: 20px;
-      color: var(--text-dark);
+      color: #fff;
     }
 
     .detail-body li {
       margin-bottom: 8px;
     }
 
-    .inline-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 8px;
-    }
-
-    /* ---------- CONTACT ---------- */
     .contact-grid {
       display: grid;
       grid-template-columns: 360px minmax(0, 1fr);
@@ -999,7 +982,7 @@
     }
 
     .contact-panel {
-      background: linear-gradient(180deg, #15181c 0%, #0e1012 100%);
+      background: linear-gradient(180deg, #171c21 0%, #101316 100%);
       color: #fff;
       border: 1px solid rgba(255,255,255,.08);
       border-radius: 24px;
@@ -1008,7 +991,7 @@
     }
 
     .contact-panel h3 {
-      margin: 14px 0 10px;
+      margin: 0 0 10px;
       font-family: "Oswald", system-ui, sans-serif;
       font-size: 1.7rem;
       line-height: 1.02;
@@ -1058,16 +1041,17 @@
     }
 
     .contact-form-wrap {
-      background: rgba(255,255,255,.86);
-      border: 1px solid rgba(0,0,0,.06);
+      background: linear-gradient(180deg, #f3efe8, #ece6dc);
+      border: 1px solid rgba(255,255,255,.08);
       border-radius: 24px;
       padding: 28px;
       box-shadow: var(--shadow-soft);
+      color: var(--text-dark);
     }
 
     .contact-form-wrap > p {
       margin-top: 0;
-      color: var(--text-soft);
+      color: var(--text-soft-dark);
     }
 
     form {
@@ -1149,7 +1133,7 @@
     #formStatus {
       margin-top: 12px;
       min-height: 1.25em;
-      color: var(--danger);
+      color: #8a1f11;
       font-weight: 700;
       font-family: "Oswald", system-ui, sans-serif;
       letter-spacing: .4px;
@@ -1157,22 +1141,21 @@
 
     .contact-note {
       margin-top: 16px;
-      color: var(--text-soft);
+      color: var(--text-soft-dark);
       font-size: .92rem;
     }
 
-    /* ---------- LEGAL + FOOTER ---------- */
     .disclaimer {
-      background: linear-gradient(180deg, #e8e3db, #dfd8cf);
-      font-size: 0.92rem;
-      color: #403e3a;
+      background: linear-gradient(180deg, #15181c, #101215);
+      color: rgba(255,255,255,.72);
       padding: 54px 0;
-      border-top: 1px solid rgba(0,0,0,.05);
+      border-top: 1px solid rgba(255,255,255,.06);
     }
 
     .disclaimer strong {
       display: inline-block;
       margin-bottom: 8px;
+      color: #fff;
       font-family: "Oswald", system-ui, sans-serif;
       text-transform: uppercase;
       letter-spacing: .8px;
@@ -1215,7 +1198,6 @@
       font-size: .84rem;
     }
 
-    /* ---------- FLOATING CALL BUTTON ---------- */
     .floating-call {
       position: fixed;
       right: 16px;
@@ -1240,7 +1222,6 @@
       padding: 0 18px;
     }
 
-    /* ---------- MODAL ---------- */
     .modal { position: fixed; inset: 0; display: none; z-index: 9999; }
     .modal.is-open { display: block; }
 
@@ -1267,9 +1248,14 @@
       font-family: "Oswald", system-ui, sans-serif;
       letter-spacing: 1px;
       text-transform: uppercase;
+      color: #111;
     }
 
-    .modal__body { margin: 0 0 16px; line-height: 1.45; }
+    .modal__body {
+      margin: 0 0 16px;
+      line-height: 1.45;
+      color: #333;
+    }
 
     .modal__actions { display: flex; justify-content: flex-end; gap: 10px; }
 
@@ -1295,9 +1281,9 @@
       font-size: 24px;
       cursor: pointer;
       line-height: 1;
+      color: #111;
     }
 
-    /* ---------- RESPONSIVE ---------- */
     @media (max-width: 1080px) {
       .hero-inner,
       .intro-layout,
@@ -1311,18 +1297,17 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .hero-copy {
-        max-width: none;
+      .detail-card {
+        grid-template-columns: 1fr;
       }
 
       .hero-logo {
-        width: min(460px, 82vw);
+        width: min(560px, 96%);
       }
     }
 
     @media (max-width: 920px) {
       .topbar-nav,
-      .nav-wrap > .btn-primary,
       .nav-wrap > .btn-phone {
         display: none;
       }
@@ -1343,14 +1328,6 @@
       .utility-inner {
         min-height: 42px;
       }
-
-      .utility-right {
-        display: none;
-      }
-
-      .detail-card {
-        grid-template-columns: 1fr;
-      }
     }
 
     @media (max-width: 768px) {
@@ -1367,26 +1344,22 @@
         text-align: center;
       }
 
-      .topbar-inner {
-        min-height: var(--header-height);
-      }
-
       .hero {
         min-height: auto;
       }
 
       .hero-inner {
-        padding: 52px 0 48px;
+        padding: 48px 0 44px;
         gap: 24px;
       }
 
       .hero-logo {
-        width: min(360px, 86vw);
-        margin-bottom: 14px;
+        width: min(420px, 96%);
+        margin-bottom: 10px;
       }
 
       .hero h1 {
-        font-size: clamp(2.35rem, 10vw, 3.4rem);
+        font-size: clamp(2.35rem, 10vw, 3.5rem);
       }
 
       .hero-actions {
@@ -1399,10 +1372,7 @@
       }
 
       .services-grid,
-      .trust-grid {
-        grid-template-columns: 1fr;
-      }
-
+      .trust-grid,
       .form-grid {
         grid-template-columns: 1fr;
       }
@@ -1411,7 +1381,8 @@
       .contact-panel,
       .intro-card,
       .intro-highlight,
-      .detail-card {
+      .detail-card,
+      .hero-sidecard {
         padding: 22px;
       }
     }
@@ -1419,10 +1390,6 @@
     @media (max-width: 640px) {
       .container {
         width: min(var(--max-width), calc(100% - 24px));
-      }
-
-      .topbar-inner {
-        gap: 14px;
       }
 
       .brand {
@@ -1445,12 +1412,8 @@
         display: none;
       }
 
-      .hero-sidecard {
-        padding: 22px;
-      }
-
       .hero-logo {
-        width: min(300px, 86vw);
+        width: min(330px, 96%);
       }
 
       .hero-subtitle {
@@ -1511,13 +1474,6 @@
           <span>Plano, Texas</span>
         </span>
       </div>
-
-      <div class="utility-right">
-        <span class="utility-pill">
-          <strong>Services</strong>
-          <span>Custom Builds • Gunsmithing • Transfers</span>
-        </span>
-      </div>
     </div>
   </div>
 
@@ -1542,7 +1498,6 @@
           <a href="#contact">Contact</a>
         </nav>
 
-        <a href="tel:2149454443" class="btn-phone">Call 214-945-4443</a>
         <a href="#contact" class="btn-primary">Book Appointment</a>
 
         <button
@@ -1572,8 +1527,8 @@
         </nav>
 
         <div class="mobile-panel-actions">
-          <a href="tel:2149454443" class="btn-phone">Call 214-945-4443</a>
           <a href="#contact" class="btn-primary">Book Appointment</a>
+          <a href="tel:2149454443" class="btn-phone">Call 214-945-4443</a>
         </div>
 
         <div class="mobile-utility">By appointment only • Plano, Texas</div>
@@ -1585,8 +1540,6 @@
     <section class="hero">
       <div class="container hero-inner">
         <div class="hero-copy">
-          <span class="eyebrow">Plano, Texas • By Appointment Only</span>
-
           <div class="hero-logo">
             <img src="/images/logo-white.png" alt="Lone Spur Precision">
           </div>
@@ -1601,20 +1554,18 @@
 
           <div class="hero-actions">
             <a href="#contact" class="btn-primary">Request an Appointment</a>
-            <a href="tel:2149454443" class="btn-secondary">Call 214-945-4443</a>
             <a href="#services" class="btn-ghost">View Services</a>
           </div>
 
           <div class="hero-meta">
-            <span class="chip">Open by appointment only</span>
+            <span class="chip">By appointment only</span>
             <span class="chip">Custom rifle builds</span>
-            <span class="chip">Firearm sales and transfers</span>
+            <span class="chip">Sales and transfers</span>
             <span class="chip">Professional gunsmithing</span>
           </div>
         </div>
 
-        <aside class="hero-sidecard" aria-label="Quick contact">
-          <span class="eyebrow">Start the conversation</span>
+        <aside class="hero-sidecard" aria-label="Quick overview">
           <h2>Built around your needs and use case</h2>
           <p>
             Whether you need a custom rifle build, transfer support, or service work,
@@ -1629,10 +1580,8 @@
 
           <div class="hero-sidecard-actions">
             <a href="#contact" class="btn-primary">Book Appointment</a>
-            <a href="tel:2149454443" class="btn-phone">Call 214-945-4443</a>
+            <a href="tel:2149454443" class="btn-phone">Call</a>
           </div>
-
-          <a class="hero-phone" href="tel:2149454443">214-945-4443</a>
         </aside>
       </div>
     </section>
@@ -1649,12 +1598,12 @@
             <div class="value">By Appointment Only</div>
           </div>
           <div class="trust-card">
-            <div class="label">Phone</div>
+            <div class="label">Contact</div>
             <div class="value">214-945-4443</div>
           </div>
           <div class="trust-card">
-            <div class="label">Primary Services</div>
-            <div class="value">Builds • Transfers • Gunsmithing</div>
+            <div class="label">Focus</div>
+            <div class="value">Builds • Transfers • Service</div>
           </div>
         </div>
       </div>
@@ -1663,8 +1612,8 @@
     <section class="section" id="about">
       <div class="container">
         <div class="section-header">
-          <span class="eyebrow dark">About Lone Spur Precision</span>
-          <h2>Premium presentation without losing the straightforward service approach</h2>
+          <span class="eyebrow-dark">About Lone Spur Precision</span>
+          <h2>A more refined presentation with the same direct approach</h2>
           <div class="divider-line"></div>
         </div>
 
@@ -1675,33 +1624,32 @@
               precision-driven firearms work with craftsmanship and accuracy at every step.
             </p>
             <p>
-              This site is intentionally structured to make it easier for prospective customers
-              to understand what you do quickly, reach you by phone, and request an appointment
-              without losing the direct tone and clear service information already on your site.
+              This version of the site keeps the tone cleaner and more natural. The structure is still
+              conversion-focused, but with less repetition, a darker overall presentation, and a more
+              premium visual flow.
             </p>
             <div class="inline-actions">
               <a href="#services" class="btn-secondary">Explore Services</a>
-              <a href="tel:2149454443" class="btn-phone">Call Now</a>
             </div>
           </div>
 
           <aside class="aside-card intro-highlight">
-            <h3>What customers should feel</h3>
+            <h3>What this version improves</h3>
 
             <div class="mini-points">
               <div class="mini-point">
-                <strong>Premium</strong>
-                <p>A cleaner hierarchy, stronger contact paths, and a more refined dark-metal palette.</p>
+                <strong>Darker overall feel</strong>
+                <p>A more premium dark presentation across the body of the site.</p>
               </div>
 
               <div class="mini-point">
-                <strong>Clear</strong>
-                <p>Your three core service categories stay prominent from the first screen onward.</p>
+                <strong>Less repetition</strong>
+                <p>Fewer repeated mentions of the same points and fewer redundant callouts.</p>
               </div>
 
               <div class="mini-point">
-                <strong>Accessible</strong>
-                <p>Phone, appointment CTA, and contact form are now easier to find and use.</p>
+                <strong>Cleaner flow</strong>
+                <p>Content feels more natural while still preserving the information already included.</p>
               </div>
             </div>
           </aside>
@@ -1709,15 +1657,14 @@
       </div>
     </section>
 
-    <section class="section alt" id="services">
+    <section class="section dark-band" id="services">
       <div class="container">
         <div class="section-header">
-          <span class="eyebrow dark">Services</span>
-          <h2>Three clear paths into your business</h2>
+          <span class="eyebrow-dark">Services</span>
+          <h2>Three clear service paths</h2>
           <div class="divider-line"></div>
           <p>
-            The strongest-performing shops make the next step obvious. These cards keep each core
-            service distinct while preserving the content already on your site.
+            Your core service categories stay easy to scan without repeating too much of the same messaging.
           </p>
         </div>
 
@@ -1755,12 +1702,9 @@
     <section class="section" id="gallery">
       <div class="container">
         <div class="section-header">
-          <span class="eyebrow dark">Gallery</span>
-          <h2>Visuals that support a premium perception</h2>
+          <span class="eyebrow-dark">Gallery</span>
+          <h2>Visual presentation that feels more premium and less busy</h2>
           <div class="divider-line"></div>
-          <p>
-            A more editorial layout gives your imagery more impact and helps reinforce the precision-focused tone.
-          </p>
         </div>
 
         <div class="gallery-shell">
@@ -1794,10 +1738,10 @@
       </div>
     </section>
 
-    <section class="section alt" id="service-custom">
+    <section class="section dark-band" id="service-custom">
       <div class="container">
         <div class="section-header">
-          <span class="eyebrow dark">Custom Rifle Builds</span>
+          <span class="eyebrow-dark">Custom Rifle Builds</span>
           <h2>Purpose-built around the way the rifle will actually be used</h2>
           <div class="divider-line"></div>
         </div>
@@ -1841,7 +1785,7 @@
     <section class="section" id="service-manufacturing">
       <div class="container">
         <div class="section-header">
-          <span class="eyebrow dark">Firearm Sales and Transfers</span>
+          <span class="eyebrow-dark">Firearm Sales and Transfers</span>
           <h2>Appointment-based transfer support with clear next steps</h2>
           <div class="divider-line"></div>
         </div>
@@ -1885,10 +1829,10 @@
       </div>
     </section>
 
-    <section class="section alt" id="service-gunsmithing">
+    <section class="section dark-band" id="service-gunsmithing">
       <div class="container">
         <div class="section-header">
-          <span class="eyebrow dark">Gunsmithing</span>
+          <span class="eyebrow-dark">Gunsmithing</span>
           <h2>Service, repair, and optimization with a direct appointment path</h2>
           <div class="divider-line"></div>
         </div>
@@ -1935,18 +1879,16 @@
     <section class="section" id="contact">
       <div class="container">
         <div class="section-header">
-          <span class="eyebrow dark">Contact</span>
-          <h2>Give customers more than one clean way to reach you</h2>
+          <span class="eyebrow-dark">Contact</span>
+          <h2>Reach out directly or submit a request</h2>
           <div class="divider-line"></div>
           <p>
-            The form remains intact and still submits to the same endpoint. Phone access is now more visible for visitors
-            who prefer to call first.
+            The form stays connected to the same endpoint and keeps all current submission behavior intact.
           </p>
         </div>
 
         <div class="contact-grid">
           <aside class="contact-panel">
-            <span class="eyebrow">Direct contact</span>
             <h3>Contact Lone Spur Precision</h3>
             <p>
               Please submit a request below for sales, transfers, info or appointments.
@@ -1968,15 +1910,10 @@
                 <span class="label">Service Area</span>
                 <strong>Plano, Texas</strong>
               </div>
-
-              <div class="contact-point">
-                <span class="label">Best next step</span>
-                <strong>Call or submit the request form</strong>
-              </div>
             </div>
 
             <div class="inline-actions" style="margin-top:18px;">
-              <a href="tel:2149454443" class="btn-primary">Call 214-945-4443</a>
+              <a href="tel:2149454443" class="btn-primary">Call</a>
             </div>
           </aside>
 
@@ -2027,7 +1964,7 @@
             </form>
 
             <p class="contact-note">
-              Prefer to speak directly? Call <a href="tel:2149454443">214-945-4443</a>.
+              Prefer to call instead? <a href="tel:2149454443">214-945-4443</a>
             </p>
           </div>
         </div>
@@ -2276,7 +2213,7 @@
       </div>
 
       <div class="footer-links">
-        <a href="tel:2149454443">214-945-4443</a>
+        <a href="tel:2149454443">Call</a>
         <a href="#services">Services</a>
         <a href="#gallery">Gallery</a>
         <a href="#contact">Contact</a>
