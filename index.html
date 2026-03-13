@@ -3,30 +3,47 @@
 <head>
   <meta charset="utf-8" />
   <title>Lone Spur Precision | Precision Rifle Manufacturing</title>
-
-  <meta name="description" content="Lone Spur Precision provides precision rifle manufacturing, gunsmithing, and firearm sales and transfer services by appointment in Plano, Texas." />
+  <meta
+    name="description"
+    content="Lone Spur Precision provides precision rifle manufacturing, gunsmithing, and firearm sales and transfer services by appointment in Plano, Texas."
+  />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Libre+Baskerville:wght@400;700&display=swap"
+    rel="stylesheet"
+  >
 
   <style>
     :root {
-      --bg-dark: #0e0e0e;
-      --bg-dark-2: #131313;
-      --bg-light: #f6f6f6;
-      --accent: #9c7c3a;
-      --accent-2: #6e4b22;
-      --accent-bright: #b08a43;
-      --text-dark: #111;
-      --text-light: #f2f2f2;
-      --max-width: 1100px;
-      --header-height: 82px;
-      --shadow-soft: 0 10px 30px rgba(0,0,0,.24);
-      --shadow-btn: 0 10px 26px rgba(0,0,0,.28);
-      --border-light: rgba(255,255,255,.08);
-      --muted-light: rgba(255,255,255,.68);
+      --bg-page: #f3f1ec;
+      --bg-soft: #ebe7df;
+      --bg-dark: #0c0d0f;
+      --bg-dark-2: #121417;
+      --bg-card: #ffffff;
+      --bg-card-2: #fbfaf8;
+      --metal: #23272d;
+      --metal-2: #313741;
+      --accent: #a88444;
+      --accent-2: #7b5b28;
+      --accent-3: #d4b478;
+      --text-dark: #141516;
+      --text-soft: #5f605f;
+      --text-light: #f3f2ef;
+      --text-muted-light: rgba(255,255,255,.72);
+      --line: rgba(18, 20, 23, .10);
+      --line-light: rgba(255,255,255,.10);
+      --success: #254a33;
+      --danger: #8a1f11;
+      --max-width: 1180px;
+      --radius: 18px;
+      --radius-sm: 10px;
+      --header-height: 88px;
+      --shadow-soft: 0 18px 45px rgba(0,0,0,.12);
+      --shadow-strong: 0 18px 40px rgba(0,0,0,.24);
+      --shadow-btn: 0 10px 26px rgba(0,0,0,.22);
     }
 
     * { box-sizing: border-box; }
@@ -36,9 +53,11 @@
     body {
       margin: 0;
       font-family: "Libre Baskerville", Georgia, serif;
-      line-height: 1.6;
+      line-height: 1.65;
       color: var(--text-dark);
-      background: var(--bg-light);
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,.65), transparent 28%),
+        linear-gradient(180deg, #f5f3ef 0%, #efebe4 100%);
     }
 
     img {
@@ -46,177 +65,334 @@
       display: block;
     }
 
-    /* ---------- TOP BAR ---------- */
-    .topbar{
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.88);
+      font-family: "Oswald", system-ui, sans-serif;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow.dark {
+      background: rgba(168,132,68,.08);
+      border-color: rgba(168,132,68,.22);
+      color: var(--accent-2);
+    }
+
+    .section {
+      position: relative;
+      padding: 84px 0;
+    }
+
+    .section.alt {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.68), rgba(255,255,255,.88));
+      border-top: 1px solid rgba(0,0,0,.03);
+      border-bottom: 1px solid rgba(0,0,0,.03);
+    }
+
+    .section-header {
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .section-header h2 {
+      margin: 14px 0 12px;
+      font-family: "Oswald", system-ui, sans-serif;
+      font-size: clamp(2rem, 4vw, 2.9rem);
+      line-height: 1.05;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .section-header p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 1rem;
+    }
+
+    .divider-line {
+      width: 88px;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-3));
+      margin-top: 10px;
+    }
+
+    /* ---------- UTILITY BAR ---------- */
+    .utility-bar {
+      background:
+        linear-gradient(180deg, rgba(8,9,11,.98), rgba(16,18,21,.98));
+      color: rgba(255,255,255,.82);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .utility-inner {
+      min-height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      font-size: .88rem;
+    }
+
+    .utility-left,
+    .utility-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .utility-pill,
+    .utility-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .utility-link strong,
+    .utility-pill strong {
+      color: #fff;
+      font-family: "Oswald", system-ui, sans-serif;
+      font-weight: 600;
+      letter-spacing: .7px;
+      text-transform: uppercase;
+      font-size: .82rem;
+    }
+
+    .utility-sep {
+      width: 1px;
+      height: 16px;
+      background: rgba(255,255,255,.14);
+    }
+
+    /* ---------- HEADER ---------- */
+    .topbar {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(8,8,8,.84);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-light);
+      background: rgba(10, 11, 13, .84);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
       transition: background .25s ease, box-shadow .25s ease, border-color .25s ease;
     }
 
-    .topbar.scrolled{
-      background: rgba(10,10,10,.96);
-      box-shadow: var(--shadow-soft);
+    .topbar.scrolled {
+      background: rgba(9, 10, 12, .96);
+      box-shadow: 0 14px 32px rgba(0,0,0,.22);
       border-bottom-color: rgba(255,255,255,.10);
     }
 
-    .topbar-inner{
-      max-width: var(--max-width);
+    .topbar-inner {
       min-height: var(--header-height);
-      margin: 0 auto;
-      padding: 12px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 24px;
     }
 
-    .brand{
+    .brand {
       display: inline-flex;
       align-items: center;
       gap: 14px;
-      color: #fff;
       text-decoration: none;
+      color: #fff;
       min-width: 0;
-      line-height: 1;
     }
 
-    .brand-mark{
-      width: 54px;
-      height: 54px;
-      flex: 0 0 54px;
-      border-radius: 10px;
-      background: #f2f2f2;
-      border: 1px solid rgba(255,255,255,.12);
-      display: grid;
-      place-items: center;
+    .brand-mark {
+      width: 56px;
+      height: 56px;
+      flex: 0 0 56px;
       padding: 6px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, #f8f8f7, #e9e6df);
+      border: 1px solid rgba(255,255,255,.18);
       box-shadow:
-        0 8px 22px rgba(0,0,0,.24),
+        0 10px 24px rgba(0,0,0,.24),
         inset 0 1px 0 rgba(255,255,255,.45);
       overflow: hidden;
     }
 
-    .brand-mark img{
+    .brand-mark img {
       width: 100%;
       height: 100%;
       object-fit: contain;
-      display: block;
     }
 
-    .brand-text{
+    .brand-text {
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 5px;
       min-width: 0;
+      line-height: 1;
     }
 
-    .brand .name{
+    .brand-name {
       font-family: "Oswald", system-ui, sans-serif;
+      font-size: 1.18rem;
       font-weight: 700;
-      letter-spacing: 2.4px;
+      letter-spacing: 2.6px;
       text-transform: uppercase;
-      color: #fff;
-      font-size: 1.2rem;
       white-space: nowrap;
     }
 
-    .brand .tag{
-      font-family: "Libre Baskerville", Georgia, serif;
-      font-weight: 400;
-      letter-spacing: .4px;
-      color: var(--muted-light);
-      font-size: 0.72rem;
+    .brand-tag {
+      color: var(--text-muted-light);
+      font-size: .73rem;
+      letter-spacing: .45px;
       white-space: nowrap;
     }
 
-    .nav-wrap{
+    .nav-wrap {
       display: flex;
       align-items: center;
       gap: 18px;
       margin-left: auto;
     }
 
-    .topbar-nav{
+    .topbar-nav {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 20px;
     }
 
-    .topbar-nav a{
+    .topbar-nav a {
       position: relative;
-      font-family: "Oswald", system-ui, sans-serif;
-      color: rgba(255,255,255,.88);
+      color: rgba(255,255,255,.9);
       text-decoration: none;
+      font-family: "Oswald", system-ui, sans-serif;
+      font-size: .88rem;
       font-weight: 600;
-      letter-spacing: .9px;
+      letter-spacing: 1px;
       text-transform: uppercase;
-      font-size: 0.86rem;
-      transition: color .2s ease, opacity .2s ease;
+      transition: color .2s ease;
     }
 
-    .topbar-nav a::after{
+    .topbar-nav a::after {
       content: "";
       position: absolute;
       left: 0;
-      bottom: -6px;
+      bottom: -7px;
       width: 100%;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent-bright), transparent);
+      background: linear-gradient(90deg, transparent, var(--accent-3), transparent);
       transform: scaleX(0);
       transform-origin: center;
       transition: transform .22s ease;
-      opacity: .9;
     }
 
     .topbar-nav a:hover,
-    .topbar-nav a:focus-visible{
+    .topbar-nav a:focus-visible {
       color: #fff;
     }
 
     .topbar-nav a:hover::after,
-    .topbar-nav a:focus-visible::after{
+    .topbar-nav a:focus-visible::after {
       transform: scaleX(1);
     }
 
-    .btn-primary{
+    .btn-primary,
+    .btn-secondary,
+    .btn-ghost,
+    .btn-phone {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 44px;
-      background: linear-gradient(180deg, var(--accent-bright) 0%, var(--accent-2) 100%);
-      color: #111 !important;
-      padding: 11px 16px;
-      border-radius: 6px;
-      border: 1px solid rgba(255,255,255,.10);
+      gap: 8px;
+      min-height: 46px;
+      padding: 12px 18px;
+      border-radius: 10px;
       text-decoration: none;
-      font-weight: 800;
       font-family: "Oswald", system-ui, sans-serif;
+      font-size: .94rem;
+      font-weight: 700;
       letter-spacing: 1px;
       text-transform: uppercase;
-      box-shadow: var(--shadow-btn);
-      transition: transform .2s ease, filter .2s ease, box-shadow .2s ease;
+      transition: transform .2s ease, filter .2s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
       white-space: nowrap;
     }
 
-    .btn-primary:hover,
-    .btn-primary:focus-visible{
-      filter: brightness(1.05);
-      transform: translateY(-1px);
-      box-shadow: 0 12px 28px rgba(0,0,0,.34);
+    .btn-primary {
+      background: linear-gradient(180deg, var(--accent-3) 0%, var(--accent-2) 100%);
+      color: #151310;
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow-btn);
     }
 
-    .menu-toggle{
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(0,0,0,.26);
+    }
+
+    .btn-phone {
+      background: rgba(255,255,255,.06);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.14);
+    }
+
+    .btn-phone:hover,
+    .btn-phone:focus-visible {
+      background: rgba(255,255,255,.10);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(180deg, #191b20 0%, #0f1012 100%);
+      border: 1px solid rgba(255,255,255,.10);
+      color: #fff;
+      box-shadow: 0 10px 22px rgba(0,0,0,.18);
+    }
+
+    .btn-secondary:hover,
+    .btn-secondary:focus-visible {
+      background: linear-gradient(180deg, #20242b 0%, #111317 100%);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      color: #fff;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.18);
+    }
+
+    .btn-ghost:hover,
+    .btn-ghost:focus-visible {
+      background: rgba(255,255,255,.09);
+      border-color: rgba(255,255,255,.28);
+      transform: translateY(-1px);
+    }
+
+    .menu-toggle {
       display: none;
       width: 46px;
       height: 46px;
       padding: 0;
       border: 1px solid rgba(255,255,255,.12);
-      border-radius: 8px;
+      border-radius: 10px;
       background: rgba(255,255,255,.04);
       cursor: pointer;
       align-items: center;
@@ -225,18 +401,18 @@
     }
 
     .menu-toggle:hover,
-    .menu-toggle:focus-visible{
-      background: rgba(255,255,255,.08);
+    .menu-toggle:focus-visible {
+      background: rgba(255,255,255,.09);
       border-color: rgba(255,255,255,.2);
     }
 
-    .menu-toggle-box{
+    .menu-toggle-box {
       width: 20px;
       height: 14px;
       position: relative;
     }
 
-    .menu-toggle-line{
+    .menu-toggle-line {
       position: absolute;
       left: 0;
       width: 100%;
@@ -246,48 +422,46 @@
       transition: transform .22s ease, opacity .22s ease, top .22s ease;
     }
 
-    .menu-toggle-line:nth-child(1){ top: 0; }
-    .menu-toggle-line:nth-child(2){ top: 6px; }
-    .menu-toggle-line:nth-child(3){ top: 12px; }
+    .menu-toggle-line:nth-child(1) { top: 0; }
+    .menu-toggle-line:nth-child(2) { top: 6px; }
+    .menu-toggle-line:nth-child(3) { top: 12px; }
 
-    .menu-toggle[aria-expanded="true"] .menu-toggle-line:nth-child(1){
+    .menu-toggle[aria-expanded="true"] .menu-toggle-line:nth-child(1) {
       top: 6px;
       transform: rotate(45deg);
     }
 
-    .menu-toggle[aria-expanded="true"] .menu-toggle-line:nth-child(2){
+    .menu-toggle[aria-expanded="true"] .menu-toggle-line:nth-child(2) {
       opacity: 0;
     }
 
-    .menu-toggle[aria-expanded="true"] .menu-toggle-line:nth-child(3){
+    .menu-toggle[aria-expanded="true"] .menu-toggle-line:nth-child(3) {
       top: 6px;
       transform: rotate(-45deg);
     }
 
-    .mobile-panel{
+    .mobile-panel {
       display: none;
       border-top: 1px solid rgba(255,255,255,.08);
-      background: linear-gradient(180deg, rgba(18,18,18,.98), rgba(10,10,10,.98));
+      background: linear-gradient(180deg, rgba(15,16,18,.98), rgba(9,10,12,.98));
     }
 
-    .mobile-panel.open{
+    .mobile-panel.open {
       display: block;
     }
 
-    .mobile-panel-inner{
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 14px 24px 20px;
+    .mobile-panel-inner {
+      padding: 18px 0 22px;
     }
 
-    .mobile-nav{
+    .mobile-nav {
       display: grid;
-      gap: 8px;
+      gap: 6px;
     }
 
-    .mobile-nav a{
+    .mobile-nav a {
       display: block;
-      padding: 12px 0;
+      padding: 13px 0;
       color: rgba(255,255,255,.9);
       text-decoration: none;
       border-bottom: 1px solid rgba(255,255,255,.06);
@@ -298,328 +472,674 @@
       text-transform: uppercase;
     }
 
-    .mobile-nav a:last-child{
+    .mobile-nav a:last-child {
       border-bottom: 0;
     }
 
-    .mobile-panel-cta{
+    .mobile-panel-actions {
+      display: grid;
+      gap: 10px;
       margin-top: 16px;
     }
 
-    .mobile-panel-cta .btn-primary{
+    .mobile-panel-actions a {
       width: 100%;
     }
 
-    .mobile-utility{
+    .mobile-utility {
       margin-top: 14px;
-      color: rgba(255,255,255,.66);
-      font-size: .78rem;
+      color: rgba(255,255,255,.68);
+      font-size: .82rem;
     }
 
     /* ---------- HERO ---------- */
     .hero {
-      min-height: calc(100vh - var(--header-height));
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      position: relative;
+      min-height: calc(100vh - var(--header-height) - 46px);
+      color: var(--text-light);
       background:
-        linear-gradient(rgba(8,8,8,.58), rgba(8,8,8,.78)),
+        linear-gradient(180deg, rgba(5,6,8,.36), rgba(5,6,8,.66)),
         url("/images/gm-background.png");
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      color: var(--text-light);
-      position: relative;
       overflow: hidden;
     }
 
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
       background:
-        linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.10)),
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,.05), transparent 28%),
-        radial-gradient(circle at 80% 35%, rgba(255,255,255,.04), transparent 30%);
-      pointer-events:none;
-      z-index:0;
+        radial-gradient(circle at 20% 18%, rgba(255,255,255,.06), transparent 28%),
+        radial-gradient(circle at 82% 28%, rgba(255,255,255,.04), transparent 26%),
+        linear-gradient(120deg, rgba(255,255,255,.025) 0%, transparent 18%, transparent 82%, rgba(255,255,255,.02) 100%);
+      pointer-events: none;
     }
 
-    .hero::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,.03) 0%, transparent 20%, transparent 80%, rgba(255,255,255,.025) 100%);
-      pointer-events:none;
-      opacity:.8;
-      z-index:0;
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 120px;
+      background: linear-gradient(180deg, rgba(15,16,19,0), rgba(15,16,19,.36));
+      pointer-events: none;
     }
 
     .hero-inner {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 88px 24px 64px;
       position: relative;
       z-index: 1;
+      min-height: inherit;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(300px, .68fr);
+      align-items: center;
+      gap: 42px;
+      padding: 74px 0 60px;
     }
 
-    .hero-centered{
-      text-align:center;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
+    .hero-copy {
+      max-width: 760px;
     }
 
-    .hero-logo{
-      width: min(460px, 78vw);
-      margin: 0 auto 18px;
+    .hero-logo {
+      width: min(520px, 88%);
+      margin: 0 0 18px;
       filter:
-        drop-shadow(0 10px 24px rgba(0,0,0,.38))
-        drop-shadow(0 0 18px rgba(255,255,255,.04));
+        drop-shadow(0 12px 28px rgba(0,0,0,.42))
+        drop-shadow(0 0 18px rgba(255,255,255,.05));
     }
 
-    .hero-logo img{
+    .hero-logo img {
       width: 100%;
       height: auto;
       object-fit: contain;
     }
 
     .hero h1 {
+      margin: 16px 0 12px;
       font-family: "Oswald", system-ui, sans-serif;
-      font-size: clamp(2.4rem, 5.4vw, 3.6rem);
-      margin: 0 0 12px;
+      font-size: clamp(2.65rem, 5.4vw, 4.7rem);
+      line-height: .98;
       letter-spacing: 1.2px;
       text-transform: uppercase;
-      line-height: 1.08;
-      text-shadow: 0 6px 20px rgba(0,0,0,.35);
+      text-shadow: 0 8px 24px rgba(0,0,0,.34);
     }
 
-    .hero p {
-      font-size: 1.05rem;
+    .hero-subtitle {
       max-width: 720px;
-      color: rgba(255,255,255,.88);
       margin: 0;
+      color: rgba(255,255,255,.90);
+      font-size: 1.06rem;
       text-shadow: 0 4px 16px rgba(0,0,0,.28);
     }
 
-    .hero-cta{
-      display:flex;
-      gap:12px;
-      margin-top: 22px;
+    .hero-actions {
+      display: flex;
       flex-wrap: wrap;
       align-items: center;
-      justify-content: center;
+      gap: 12px;
+      margin-top: 24px;
     }
 
-    .btn-hero{
-      display:inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 46px;
-      background: linear-gradient(180deg, var(--accent-bright) 0%, var(--accent-2) 100%);
-      color:#111;
-      padding: 12px 16px;
-      border-radius: 8px;
-      border: 1px solid rgba(255,255,255,.08);
-      text-decoration:none;
-      font-weight: 800;
-      font-family: "Oswald", system-ui, sans-serif;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      box-shadow: 0 10px 26px rgba(0,0,0,.30);
-      transition: transform .2s ease, filter .2s ease;
-    }
-
-    .btn-hero:hover,
-    .btn-hero:focus-visible{
-      filter: brightness(1.05);
-      transform: translateY(-2px);
-    }
-
-    .btn-ghost{
-      display:inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 46px;
-      border: 1px solid rgba(255,255,255,.28);
-      color:#fff;
-      padding: 12px 16px;
-      border-radius: 8px;
-      text-decoration:none;
-      font-weight: 700;
-      font-family: "Oswald", system-ui, sans-serif;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      background: rgba(0,0,0,.22);
-      transition: background .2s ease, border-color .2s ease, transform .2s ease;
-    }
-
-    .btn-ghost:hover,
-    .btn-ghost:focus-visible{
-      background: rgba(0,0,0,.32);
-      border-color: rgba(255,255,255,.38);
-      transform: translateY(-2px);
-    }
-
-    .hero-stamp{
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
       margin-top: 22px;
-      display: inline-block;
-      padding: 8px 14px;
-      border: 1px solid rgba(255,255,255,.28);
-      color: rgba(255,255,255,.9);
+    }
+
+    .hero-meta .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 38px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.92);
+      font-size: .83rem;
+    }
+
+    .hero-sidecard {
+      background:
+        linear-gradient(180deg, rgba(22,24,28,.88), rgba(13,14,16,.92));
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 22px;
+      padding: 26px;
+      box-shadow: var(--shadow-strong);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .hero-sidecard h2 {
+      margin: 14px 0 10px;
       font-family: "Oswald", system-ui, sans-serif;
-      font-weight: 600;
-      letter-spacing: 2px;
+      font-size: 1.7rem;
+      line-height: 1.02;
+      letter-spacing: .8px;
       text-transform: uppercase;
-      font-size: 0.85rem;
-      background: rgba(0,0,0,.35);
-      border-radius: 4px;
-      box-shadow: 0 8px 22px rgba(0,0,0,.18);
     }
 
-    /* ---------- SECTIONS ---------- */
-    .section {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 72px 24px;
+    .hero-sidecard p {
+      margin: 0 0 18px;
+      color: rgba(255,255,255,.82);
+      font-size: .97rem;
     }
 
-    .section h2 {
+    .quick-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .quick-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: rgba(255,255,255,.92);
+      font-size: .95rem;
+    }
+
+    .quick-list li::before {
+      content: "•";
+      color: var(--accent-3);
+      font-size: 1.2rem;
+      line-height: 1;
+      margin-top: 1px;
+    }
+
+    .hero-sidecard-actions {
+      display: grid;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .hero-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 16px;
+      color: #fff;
+      text-decoration: none;
       font-family: "Oswald", system-ui, sans-serif;
-      font-size: 2rem;
-      margin-bottom: 16px;
-      letter-spacing: 1px;
+      font-size: 1rem;
+      letter-spacing: .8px;
       text-transform: uppercase;
     }
 
-    .section h2::after {
-      content: "";
+    /* ---------- TRUST STRIP ---------- */
+    .trust-strip {
+      position: relative;
+      z-index: 2;
+      margin-top: -26px;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .trust-card {
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(0,0,0,.06);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .trust-card .label {
+      color: var(--text-soft);
+      font-size: .82rem;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      font-family: "Oswald", system-ui, sans-serif;
+    }
+
+    .trust-card .value {
+      margin-top: 6px;
+      font-family: "Oswald", system-ui, sans-serif;
+      font-size: 1.18rem;
+      line-height: 1.05;
+      text-transform: uppercase;
+      letter-spacing: .7px;
+    }
+
+    /* ---------- INTRO ---------- */
+    .intro-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(300px, .95fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .intro-card,
+    .aside-card {
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(0,0,0,.06);
+      border-radius: 22px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .intro-card {
+      padding: 30px;
+    }
+
+    .intro-card p {
+      margin: 0 0 16px;
+      color: var(--text-soft);
+    }
+
+    .intro-highlight {
+      display: grid;
+      gap: 14px;
+      padding: 30px;
+    }
+
+    .intro-highlight h3 {
+      margin: 0;
+      font-family: "Oswald", system-ui, sans-serif;
+      font-size: 1.45rem;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+    }
+
+    .mini-points {
+      display: grid;
+      gap: 12px;
+    }
+
+    .mini-point {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .mini-point:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .mini-point strong {
       display: block;
-      width: 72px;
-      height: 3px;
-      background: var(--accent);
-      margin-top: 8px;
+      font-family: "Oswald", system-ui, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .7px;
+      margin-bottom: 4px;
+    }
+
+    .mini-point p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: .95rem;
     }
 
     /* ---------- SERVICES ---------- */
-    .services {
+    .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 24px;
-      margin-top: 32px;
+    }
+
+    .service-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      height: 100%;
     }
 
     .service-card {
-      background: #fff;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.96), rgba(250,248,244,.98));
+      border: 1px solid rgba(0,0,0,.06);
+      border-radius: 22px;
       padding: 28px;
-      border-radius: 10px;
-      box-shadow: 0 10px 28px rgba(0,0,0,0.07);
-      border-left: 5px solid var(--accent);
+      box-shadow: var(--shadow-soft);
       transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
     }
 
-    .service-card h3{
-      font-family: "Oswald", system-ui, sans-serif;
-      margin-top: 0;
-      letter-spacing: .6px;
-      text-transform: uppercase;
-    }
-
-    .service-link{
-      display: block;
-      text-decoration: none;
-      color: inherit;
-      position: relative;
-    }
-
     .service-link:hover .service-card,
-    .service-link:focus .service-card{
-      transform: translateY(-4px);
-      box-shadow: 0 18px 36px rgba(0,0,0,.13);
-      border-left-color: var(--accent-2);
+    .service-link:focus-visible .service-card {
+      transform: translateY(-5px);
+      box-shadow: 0 22px 45px rgba(0,0,0,.14);
+      border-color: rgba(168,132,68,.22);
     }
 
-    .service-link:focus{
-      outline: 3px solid rgba(156,124,58,.35);
-      outline-offset: 3px;
-    }
-
-    .service-cta{
-      display: inline-block;
-      margin-top: 10px;
+    .service-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: inline-grid;
+      place-items: center;
+      background: linear-gradient(180deg, rgba(168,132,68,.18), rgba(123,91,40,.10));
+      border: 1px solid rgba(168,132,68,.16);
+      margin-bottom: 18px;
       font-family: "Oswald", system-ui, sans-serif;
-      letter-spacing: 1px;
-      text-transform: uppercase;
+      font-size: .95rem;
       font-weight: 700;
+      color: var(--accent-2);
+      letter-spacing: .8px;
+      text-transform: uppercase;
+    }
+
+    .service-card h3 {
+      margin: 0 0 10px;
+      font-family: "Oswald", system-ui, sans-serif;
+      font-size: 1.45rem;
+      text-transform: uppercase;
+      line-height: 1.02;
+      letter-spacing: .7px;
+    }
+
+    .service-card p {
+      margin: 0 0 14px;
+      color: var(--text-soft);
+      flex-grow: 1;
+    }
+
+    .service-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: "Oswald", system-ui, sans-serif;
+      font-size: .9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
       color: var(--accent-2);
     }
 
     /* ---------- GALLERY ---------- */
-    .gallery {
+    .gallery-shell {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin-top: 32px;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 24px;
+      align-items: stretch;
     }
 
-    .gallery img {
+    .gallery-feature {
+      position: relative;
+      min-height: 450px;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .gallery-feature img {
       width: 100%;
-      height: 220px;
+      height: 100%;
       object-fit: cover;
-      border-radius: 8px;
-      box-shadow: 0 10px 24px rgba(0,0,0,.10);
     }
 
-    /* ---------- FORM ---------- */
-    form {
-      max-width: 520px;
-      margin-top: 24px;
-      background: #fff;
-      padding: 22px 18px;
-      border-radius: 12px;
-      box-shadow: 0 10px 28px rgba(0,0,0,.08);
+    .gallery-feature::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.42));
+      pointer-events: none;
+    }
+
+    .gallery-caption {
+      position: absolute;
+      left: 24px;
+      bottom: 22px;
+      z-index: 1;
+      color: #fff;
+    }
+
+    .gallery-caption strong {
+      display: block;
+      font-family: "Oswald", system-ui, sans-serif;
+      font-size: 1.45rem;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .gallery-caption span {
+      color: rgba(255,255,255,.82);
+      font-size: .92rem;
+    }
+
+    .gallery-stack {
+      display: grid;
+      gap: 24px;
+    }
+
+    .gallery-tile {
+      overflow: hidden;
+      border-radius: 24px;
+      min-height: 213px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .gallery-tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ---------- DETAIL SECTIONS ---------- */
+    .detail-grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .detail-card {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 28px;
+      padding: 30px;
+      background: rgba(255,255,255,.84);
       border: 1px solid rgba(0,0,0,.06);
+      border-radius: 24px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .detail-aside {
+      background: linear-gradient(180deg, #14181d, #0f1216);
+      color: #fff;
+      border-radius: 18px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .detail-aside .kicker {
+      color: rgba(255,255,255,.66);
+      font-family: "Oswald", system-ui, sans-serif;
+      font-size: .82rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .detail-aside h3 {
+      margin: 0;
+      font-family: "Oswald", system-ui, sans-serif;
+      font-size: 1.7rem;
+      line-height: 1.02;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+    }
+
+    .detail-body p {
+      margin-top: 0;
+      color: var(--text-soft);
+    }
+
+    .detail-body ul {
+      margin: 0 0 18px;
+      padding-left: 20px;
+      color: var(--text-dark);
+    }
+
+    .detail-body li {
+      margin-bottom: 8px;
+    }
+
+    .inline-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    /* ---------- CONTACT ---------- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 360px minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .contact-panel {
+      background: linear-gradient(180deg, #15181c 0%, #0e1012 100%);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow-strong);
+    }
+
+    .contact-panel h3 {
+      margin: 14px 0 10px;
+      font-family: "Oswald", system-ui, sans-serif;
+      font-size: 1.7rem;
+      line-height: 1.02;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+    }
+
+    .contact-panel p {
+      margin: 0 0 18px;
+      color: rgba(255,255,255,.78);
+    }
+
+    .contact-points {
+      display: grid;
+      gap: 12px;
+      margin: 18px 0 0;
+    }
+
+    .contact-point {
+      padding: 14px 0;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .contact-point:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .contact-point .label {
+      display: block;
+      color: rgba(255,255,255,.58);
+      font-family: "Oswald", system-ui, sans-serif;
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .contact-point a,
+    .contact-point strong {
+      color: #fff;
+      font-family: "Oswald", system-ui, sans-serif;
+      text-decoration: none;
+      letter-spacing: .7px;
+      text-transform: uppercase;
+      font-size: .98rem;
+    }
+
+    .contact-form-wrap {
+      background: rgba(255,255,255,.86);
+      border: 1px solid rgba(0,0,0,.06);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .contact-form-wrap > p {
+      margin-top: 0;
+      color: var(--text-soft);
+    }
+
+    form {
+      max-width: none;
+      margin-top: 20px;
+      background: transparent;
+      padding: 0;
+      border-radius: 0;
+      box-shadow: none;
+      border: 0;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px 16px;
+    }
+
+    .field-full {
+      grid-column: 1 / -1;
     }
 
     label {
       display: block;
-      margin-top: 14px;
+      margin-top: 0;
       font-weight: 700;
       font-family: "Oswald", system-ui, sans-serif;
-      letter-spacing: .6px;
+      letter-spacing: .7px;
       text-transform: uppercase;
-      font-size: .9rem;
+      font-size: .86rem;
+      color: #171717;
     }
 
     input, textarea, select {
       width: 100%;
-      padding: 10px;
-      margin-top: 6px;
-      border-radius: 8px;
-      border: 1px solid #cfcfcf;
+      padding: 13px 14px;
+      margin-top: 7px;
+      border-radius: 12px;
+      border: 1px solid #d6d1c7;
       font-family: inherit;
       font-size: 1rem;
       background: #fff;
+      color: var(--text-dark);
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: rgba(168,132,68,.64);
+      box-shadow: 0 0 0 4px rgba(168,132,68,.12);
     }
 
     button {
       margin-top: 18px;
-      padding: 12px 18px;
-      background: var(--accent-2);
+      padding: 13px 18px;
+      background: linear-gradient(180deg, var(--accent) 0%, var(--accent-2) 100%);
       border: none;
-      color: #fff;
-      font-size: 1rem;
+      color: #17120b;
+      font-size: .96rem;
       cursor: pointer;
-      border-radius: 10px;
+      border-radius: 12px;
       font-family: "Oswald", system-ui, sans-serif;
+      font-weight: 700;
       letter-spacing: 1px;
       text-transform: uppercase;
-      box-shadow: 0 10px 24px rgba(0,0,0,.20);
+      box-shadow: 0 12px 24px rgba(0,0,0,.16);
+      transition: transform .2s ease, filter .2s ease;
     }
 
-    button:hover { filter: brightness(1.05); }
+    button:hover { filter: brightness(1.05); transform: translateY(-1px); }
 
     button:disabled {
       opacity: 0.75;
@@ -629,13 +1149,98 @@
     #formStatus {
       margin-top: 12px;
       min-height: 1.25em;
-      color: #8a1f11;
+      color: var(--danger);
       font-weight: 700;
       font-family: "Oswald", system-ui, sans-serif;
       letter-spacing: .4px;
     }
 
-    /* ---------- POPUP MODAL ---------- */
+    .contact-note {
+      margin-top: 16px;
+      color: var(--text-soft);
+      font-size: .92rem;
+    }
+
+    /* ---------- LEGAL + FOOTER ---------- */
+    .disclaimer {
+      background: linear-gradient(180deg, #e8e3db, #dfd8cf);
+      font-size: 0.92rem;
+      color: #403e3a;
+      padding: 54px 0;
+      border-top: 1px solid rgba(0,0,0,.05);
+    }
+
+    .disclaimer strong {
+      display: inline-block;
+      margin-bottom: 8px;
+      font-family: "Oswald", system-ui, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+    }
+
+    .disclaimer p {
+      margin: 0;
+      max-width: 960px;
+    }
+
+    footer {
+      background: linear-gradient(180deg, #0d0f12, #050607);
+      color: #bbb6ae;
+      padding: 26px 0 34px;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: .88rem;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #e7dfd0;
+      text-decoration: none;
+      font-family: "Oswald", system-ui, sans-serif;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      font-size: .84rem;
+    }
+
+    /* ---------- FLOATING CALL BUTTON ---------- */
+    .floating-call {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      min-width: 58px;
+      height: 58px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--accent-3) 0%, var(--accent-2) 100%);
+      color: #17120b;
+      text-decoration: none;
+      box-shadow: 0 18px 35px rgba(0,0,0,.26);
+      border: 1px solid rgba(255,255,255,.18);
+      font-family: "Oswald", system-ui, sans-serif;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      padding: 0 18px;
+    }
+
+    /* ---------- MODAL ---------- */
     .modal { position: fixed; inset: 0; display: none; z-index: 9999; }
     .modal.is-open { display: block; }
 
@@ -649,8 +1254,8 @@
       max-width: 520px;
       margin: 10vh auto;
       background: #fff;
-      border-radius: 14px;
-      padding: 22px 20px;
+      border-radius: 18px;
+      padding: 24px 22px;
       box-shadow: 0 20px 60px rgba(0,0,0,.25);
       outline: none;
       border-top: 6px solid var(--accent);
@@ -683,7 +1288,8 @@
 
     .modal__close {
       position: absolute;
-      top: 10px; right: 12px;
+      top: 10px;
+      right: 12px;
       border: 0;
       background: transparent;
       font-size: 24px;
@@ -691,115 +1297,180 @@
       line-height: 1;
     }
 
-    /* ---------- DISCLAIMER ---------- */
-    .disclaimer {
-      background: #eee;
-      font-size: 0.9rem;
-      color: #444;
-      padding: 48px 24px;
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 1080px) {
+      .hero-inner,
+      .intro-layout,
+      .gallery-shell,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid,
+      .trust-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-copy {
+        max-width: none;
+      }
+
+      .hero-logo {
+        width: min(460px, 82vw);
+      }
     }
 
-    footer {
-      text-align: center;
-      padding: 24px;
-      font-size: 0.85rem;
-      color: #bbb;
-      background: #000;
-    }
-
-    @media (max-width: 900px){
+    @media (max-width: 920px) {
       .topbar-nav,
-      .nav-wrap > .btn-primary{
+      .nav-wrap > .btn-primary,
+      .nav-wrap > .btn-phone {
         display: none;
       }
 
-      .menu-toggle{
+      .menu-toggle {
         display: inline-flex;
       }
 
-      .brand .name{
-        font-size: 1.08rem;
+      .brand-name {
+        font-size: 1.06rem;
         letter-spacing: 2px;
       }
 
-      .brand .tag{
+      .brand-tag {
         font-size: .68rem;
       }
 
-      .hero-logo{
-        width: min(420px, 82vw);
-        margin-bottom: 24px;
-      }
-    }
-
-    @media (max-width: 768px){
-      .hero {
-        min-height: 76vh;
-        background-position: center;
+      .utility-inner {
+        min-height: 42px;
       }
 
-      .hero-inner {
-        padding: 100px 20px 70px;
-      }
-
-      .hero-logo{
-        width: min(360px, 84vw);
-        margin-bottom: 22px;
-      }
-    }
-
-    @media (max-width: 640px){
-      :root{
-        --header-height: 74px;
-      }
-
-      .topbar-inner{
-        padding: 10px 16px;
-        gap: 14px;
-      }
-
-      .mobile-panel-inner{
-        padding: 12px 16px 18px;
-      }
-
-      .brand{
-        gap: 10px;
-      }
-
-      .brand-mark{
-        width: 44px;
-        height: 44px;
-        flex-basis: 44px;
-        padding: 5px;
-      }
-
-      .brand .name{
-        font-size: .98rem;
-        letter-spacing: 1.6px;
-      }
-
-      .brand .tag{
+      .utility-right {
         display: none;
       }
 
-      .hero-logo{
-        width: min(300px, 86vw);
-        margin-bottom: 20px;
+      .detail-card {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --header-height: 78px;
       }
 
-      .hero p {
-        font-size: 0.98rem;
+      .section {
+        padding: 70px 0;
       }
 
-      .hero-cta{
+      .utility-inner {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .topbar-inner {
+        min-height: var(--header-height);
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-inner {
+        padding: 52px 0 48px;
+        gap: 24px;
+      }
+
+      .hero-logo {
+        width: min(360px, 86vw);
+        margin-bottom: 14px;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.35rem, 10vw, 3.4rem);
+      }
+
+      .hero-actions {
         flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero-actions a {
         width: 100%;
       }
 
-      .btn-hero,
-      .btn-ghost{
-        width: 100%;
-        max-width: 320px;
+      .services-grid,
+      .trust-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-form-wrap,
+      .contact-panel,
+      .intro-card,
+      .intro-highlight,
+      .detail-card {
+        padding: 22px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(var(--max-width), calc(100% - 24px));
+      }
+
+      .topbar-inner {
+        gap: 14px;
+      }
+
+      .brand {
+        gap: 10px;
+      }
+
+      .brand-mark {
+        width: 46px;
+        height: 46px;
+        flex-basis: 46px;
+        padding: 5px;
+      }
+
+      .brand-name {
+        font-size: .96rem;
+        letter-spacing: 1.5px;
+      }
+
+      .brand-tag {
+        display: none;
+      }
+
+      .hero-sidecard {
+        padding: 22px;
+      }
+
+      .hero-logo {
+        width: min(300px, 86vw);
+      }
+
+      .hero-subtitle {
+        font-size: .98rem;
+      }
+
+      .gallery-feature {
+        min-height: 320px;
+      }
+
+      .gallery-tile {
+        min-height: 200px;
+      }
+
+      .floating-call {
+        display: inline-flex;
+      }
+
+      .footer-inner {
+        justify-content: center;
         text-align: center;
       }
     }
@@ -807,12 +1478,9 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
 
-      .btn-primary,
-      .btn-hero,
-      .btn-ghost,
-      .service-card,
-      .topbar,
-      .menu-toggle-line {
+      *,
+      *::before,
+      *::after {
         animation: none !important;
         transition: none !important;
       }
@@ -821,27 +1489,60 @@
 </head>
 
 <body>
+  <div class="utility-bar">
+    <div class="container utility-inner">
+      <div class="utility-left">
+        <a class="utility-link" href="tel:2149454443">
+          <strong>Call</strong>
+          <span>214-945-4443</span>
+        </a>
+
+        <span class="utility-sep" aria-hidden="true"></span>
+
+        <span class="utility-pill">
+          <strong>Hours</strong>
+          <span>By appointment only</span>
+        </span>
+
+        <span class="utility-sep" aria-hidden="true"></span>
+
+        <span class="utility-pill">
+          <strong>Location</strong>
+          <span>Plano, Texas</span>
+        </span>
+      </div>
+
+      <div class="utility-right">
+        <span class="utility-pill">
+          <strong>Services</strong>
+          <span>Custom Builds • Gunsmithing • Transfers</span>
+        </span>
+      </div>
+    </div>
+  </div>
 
   <header class="topbar" id="site-header">
-    <div class="topbar-inner">
-      <a href="#" class="brand" aria-label="Lone Spur Precision home">
+    <div class="container topbar-inner">
+      <a href="#top" class="brand" aria-label="Lone Spur Precision home">
         <div class="brand-mark" aria-hidden="true">
           <img src="/images/lsp-logo.png" alt="">
         </div>
 
         <div class="brand-text">
-          <div class="name">Lone Spur Precision</div>
-          <div class="tag">Custom Builds • Gunsmithing • Transfers</div>
+          <div class="brand-name">Lone Spur Precision</div>
+          <div class="brand-tag">Custom Builds • Gunsmithing • Transfers</div>
         </div>
       </a>
 
       <div class="nav-wrap">
         <nav class="topbar-nav" aria-label="Primary navigation">
+          <a href="#about">About</a>
           <a href="#services">Services</a>
           <a href="#gallery">Gallery</a>
           <a href="#contact">Contact</a>
         </nav>
 
+        <a href="tel:2149454443" class="btn-phone">Call 214-945-4443</a>
         <a href="#contact" class="btn-primary">Book Appointment</a>
 
         <button
@@ -862,14 +1563,16 @@
     </div>
 
     <div class="mobile-panel" id="mobilePanel">
-      <div class="mobile-panel-inner">
+      <div class="container mobile-panel-inner">
         <nav class="mobile-nav" aria-label="Mobile navigation">
+          <a href="#about">About</a>
           <a href="#services">Services</a>
           <a href="#gallery">Gallery</a>
           <a href="#contact">Contact</a>
         </nav>
 
-        <div class="mobile-panel-cta">
+        <div class="mobile-panel-actions">
+          <a href="tel:2149454443" class="btn-phone">Call 214-945-4443</a>
           <a href="#contact" class="btn-primary">Book Appointment</a>
         </div>
 
@@ -878,420 +1581,711 @@
     </div>
   </header>
 
-  <section class="hero">
-    <div class="hero-inner hero-centered">
-      <div class="hero-logo">
-        <img src="/images/logo-white.png" alt="Lone Spur Precision">
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <span class="eyebrow">Plano, Texas • By Appointment Only</span>
+
+          <div class="hero-logo">
+            <img src="/images/logo-white.png" alt="Lone Spur Precision">
+          </div>
+
+          <h1>Precision-Driven Builds, Transfers, and Gunsmithing</h1>
+
+          <p class="hero-subtitle">
+            Custom rifle builds, firearm sales and transfers, and professional
+            gunsmithing — handled with craftsmanship, straight talk, and customer-centered
+            service in Plano, Texas.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#contact" class="btn-primary">Request an Appointment</a>
+            <a href="tel:2149454443" class="btn-secondary">Call 214-945-4443</a>
+            <a href="#services" class="btn-ghost">View Services</a>
+          </div>
+
+          <div class="hero-meta">
+            <span class="chip">Open by appointment only</span>
+            <span class="chip">Custom rifle builds</span>
+            <span class="chip">Firearm sales and transfers</span>
+            <span class="chip">Professional gunsmithing</span>
+          </div>
+        </div>
+
+        <aside class="hero-sidecard" aria-label="Quick contact">
+          <span class="eyebrow">Start the conversation</span>
+          <h2>Built around your needs and use case</h2>
+          <p>
+            Whether you need a custom rifle build, transfer support, or service work,
+            Lone Spur Precision is set up for direct, appointment-based service.
+          </p>
+
+          <ul class="quick-list">
+            <li>Custom rifle builds tailored to your application and performance goals</li>
+            <li>Firearm sales and transfers by appointment</li>
+            <li>Repair, service, and optimization of existing firearms</li>
+          </ul>
+
+          <div class="hero-sidecard-actions">
+            <a href="#contact" class="btn-primary">Book Appointment</a>
+            <a href="tel:2149454443" class="btn-phone">Call 214-945-4443</a>
+          </div>
+
+          <a class="hero-phone" href="tel:2149454443">214-945-4443</a>
+        </aside>
       </div>
+    </section>
 
-      <h1>Texas-Built Precision</h1>
-
-      <p>
-        Custom rifle builds, firearm sales and transfers, and professional
-        gunsmithing — handled with craftsmanship, straight talk, and customer-centered
-        service in Plano, Texas.
-      </p>
-
-      <div class="hero-cta">
-        <a href="#contact" class="btn-hero">Request an Appointment</a>
-        <a href="#services" class="btn-ghost">View Services</a>
-      </div>
-
-      <div class="hero-stamp">Open by appointment only</div>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>About</h2>
-    <p>
-      Serving Plano, Texas and surrounding areas. Lone Spur Precision focuses on
-      precision-driven firearms work with craftsmanship and accuracy
-      at every step.
-    </p>
-  </section>
-
-  <section class="section" id="services">
-    <h2>Services</h2>
-
-    <div class="services">
-      <a class="service-link" href="#service-custom">
-        <div class="service-card">
-          <h3>Custom Rifle Builds</h3>
-          <p>Purpose-built rifles tailored to your application and performance goals.</p>
-          <span class="service-cta">Learn more →</span>
-        </div>
-      </a>
-
-      <a class="service-link" href="#service-manufacturing">
-        <div class="service-card">
-          <h3>Firearm Sales and Transfers</h3>
-          <p>Firearm sales and transfers by appointment.</p>
-          <span class="service-cta">Learn more →</span>
-        </div>
-      </a>
-
-      <a class="service-link" href="#service-gunsmithing">
-        <div class="service-card">
-          <h3>Gunsmithing</h3>
-          <p>Repair, service, and optimization of existing firearms.</p>
-          <span class="service-cta">Learn more →</span>
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <section class="section" id="gallery">
-    <h2>Gallery</h2>
-    <div class="gallery">
-      <img src="https://images.unsplash.com/photo-1585079542156-2755d9c8a094?auto=format&fit=crop&w=800&q=80" alt="Firearms workbench">
-      <img src="https://images.unsplash.com/photo-1613376023733-0a73315d9b06?auto=format&fit=crop&w=800&q=80" alt="Precision machining">
-      <img src="https://images.unsplash.com/photo-1601933470928-c54fd49a88b8?auto=format&fit=crop&w=800&q=80" alt="Rifle detail">
-    </div>
-  </section>
-
-  <section class="section" id="service-custom">
-    <h2>Custom Rifle Builds</h2>
-    <p>
-      Purpose-built rifles designed around your intended use case - hunting, competition, or duty applications.
-      We’ll discuss goals, budget, timeline, and component selection before work begins.
-    </p>
-
-    <ul>
-      <li>Component selection: barrel, action, trigger, stock/chassis</li>
-      <li>Build planning and clear communication throughout the entire process</li>
-      <li>Final function check with proof of accuracy target</li>
-      <li>Optional accessories including optics, optic mounts/rings, muzzle devices and bipods</li>
-    </ul>
-
-    <p>
-      <a href="#contact" class="btn-ghost">Request a build consultation</a>
-      &nbsp;&nbsp;<a href="#services" class="btn-ghost">Back to Services</a>
-    </p>
-  </section>
-
-  <section class="section" id="service-manufacturing">
-    <h2>Firearm Sales and Transfers</h2>
-    <p>
-      Have your firearm purchases delivered to our convenient central Plano location for transfer.
-      Please submit a <strong>Firearm Transfer Request</strong> prior to placing your order for our shipping address and FFL information.
-      We may also be able to match or beat a competitor’s pricing on customer orders.
-    </p>
-
-    <ul>
-      <li>Open for transfers by appointment only</li>
-      <li>Conveniently available after work hours</li>
-      <li>Ability to custom order firearms by request</li>
-      <li>In your inquiry please include: what firearm is being transferred, shipping FFL’s contact info (Name, Email, Address, Phone number)</li>
-      <li>Please contact us for updated pricing on transfers</li>
-      <li>All sales and transfers subject to a completed 4473 and FBI NICS background check (unless otherwise exempt due to Texas LTC)</li>
-    </ul>
-
-    <p>
-      <a href="#contact" class="btn-ghost">Ask about FFL Transfers</a>
-      &nbsp;&nbsp;<a href="#services" class="btn-ghost">Back to Services</a>
-    </p>
-  </section>
-
-  <section class="section" id="service-gunsmithing">
-    <h2>Gunsmithing</h2>
-    <p>
-      Service, repair, and optimization of existing firearms. Describe the firearm, issue, and desired outcome,
-      and we’ll tell you the best next step.
-    </p>
-
-    <ul>
-      <li>Diagnostics, repair, and performance improvements</li>
-      <li>Professional workmanship with attention to safety</li>
-      <li>Appointment-based drop off and pickup</li>
-      <li>Scope mounting and bore sight</li>
-      <li>Gun cleaning</li>
-      <li>Muzzle device installation</li>
-      <li>AR15 assembly from parts</li>
-    </ul>
-
-    <p>
-      <a href="#contact" class="btn-ghost">Request service</a>
-      &nbsp;&nbsp;<a href="#services" class="btn-ghost">Back to Services</a>
-    </p>
-  </section>
-
-  <section class="section" id="contact">
-    <h2>Contact Us</h2>
-    <p>Please submit a request below for sales, transfers, info or appointments.</p>
-    <p>Please note, appointments are required for firearm pickup and drop off.</p>
-
-    <form id="apptForm">
-      <label>Request Type
-        <select name="request_type" required>
-          <option value="" disabled selected>Select one…</option>
-          <option value="Sales">Sales Inquiry</option>
-          <option value="Information">Information Request</option>
-          <option value="Appointment">Appointment Request</option>
-          <option value="Transfer">Firearm Transfer Request</option>
-        </select>
-      </label>
-
-      <label>Name
-        <input type="text" name="name" required>
-      </label>
-
-      <label>Email
-        <input type="email" name="email" required>
-      </label>
-
-      <label>Phone (optional)
-        <input type="tel" name="phone">
-      </label>
-
-      <label>Message
-        <textarea name="message" rows="5" required></textarea>
-      </label>
-
-      <div class="cf-turnstile" data-sitekey="0x4AAAAAACX1GoTVIhQ0xV5o"></div>
-
-      <input type="text" name="company" style="display:none">
-
-      <button type="submit">Submit Contact Form</button>
-
-      <p id="formStatus" aria-live="polite"></p>
-    </form>
-
-    <div id="submitModal" class="modal" aria-hidden="true">
-      <div class="modal__backdrop" data-close="true"></div>
-
-      <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-        <button type="button" class="modal__close" aria-label="Close" data-close="true">×</button>
-
-        <h3 id="modalTitle" class="modal__title">Message sent</h3>
-        <p id="modalBody" class="modal__body">We’ll be in touch shortly.</p>
-
-        <div class="modal__actions">
-          <button type="button" class="modal__btn" data-close="true">OK</button>
+    <section class="trust-strip" aria-label="Business highlights">
+      <div class="container">
+        <div class="trust-grid">
+          <div class="trust-card">
+            <div class="label">Location</div>
+            <div class="value">Plano, Texas</div>
+          </div>
+          <div class="trust-card">
+            <div class="label">Availability</div>
+            <div class="value">By Appointment Only</div>
+          </div>
+          <div class="trust-card">
+            <div class="label">Phone</div>
+            <div class="value">214-945-4443</div>
+          </div>
+          <div class="trust-card">
+            <div class="label">Primary Services</div>
+            <div class="value">Builds • Transfers • Gunsmithing</div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow dark">About Lone Spur Precision</span>
+          <h2>Premium presentation without losing the straightforward service approach</h2>
+          <div class="divider-line"></div>
+        </div>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const header = document.getElementById("site-header");
-        const menuToggle = document.getElementById("menuToggle");
-        const mobilePanel = document.getElementById("mobilePanel");
-        const mobileLinks = mobilePanel ? mobilePanel.querySelectorAll("a") : [];
+        <div class="intro-layout">
+          <div class="intro-card">
+            <p>
+              Serving Plano, Texas and surrounding areas. Lone Spur Precision focuses on
+              precision-driven firearms work with craftsmanship and accuracy at every step.
+            </p>
+            <p>
+              This site is intentionally structured to make it easier for prospective customers
+              to understand what you do quickly, reach you by phone, and request an appointment
+              without losing the direct tone and clear service information already on your site.
+            </p>
+            <div class="inline-actions">
+              <a href="#services" class="btn-secondary">Explore Services</a>
+              <a href="tel:2149454443" class="btn-phone">Call Now</a>
+            </div>
+          </div>
 
-        function updateHeaderOnScroll() {
-          if (!header) return;
-          if (window.scrollY > 24) {
-            header.classList.add("scrolled");
-          } else {
-            header.classList.remove("scrolled");
-          }
-        }
+          <aside class="aside-card intro-highlight">
+            <h3>What customers should feel</h3>
 
-        function closeMobileMenu() {
-          if (!menuToggle || !mobilePanel) return;
-          menuToggle.setAttribute("aria-expanded", "false");
-          menuToggle.setAttribute("aria-label", "Open menu");
-          mobilePanel.classList.remove("open");
-          document.body.style.overflow = "";
-        }
+            <div class="mini-points">
+              <div class="mini-point">
+                <strong>Premium</strong>
+                <p>A cleaner hierarchy, stronger contact paths, and a more refined dark-metal palette.</p>
+              </div>
 
-        function openMobileMenu() {
-          if (!menuToggle || !mobilePanel) return;
-          menuToggle.setAttribute("aria-expanded", "true");
-          menuToggle.setAttribute("aria-label", "Close menu");
-          mobilePanel.classList.add("open");
-          document.body.style.overflow = "hidden";
-        }
+              <div class="mini-point">
+                <strong>Clear</strong>
+                <p>Your three core service categories stay prominent from the first screen onward.</p>
+              </div>
 
-        function toggleMobileMenu() {
-          if (!menuToggle) return;
-          const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
-          if (isOpen) {
-            closeMobileMenu();
-          } else {
-            openMobileMenu();
-          }
-        }
+              <div class="mini-point">
+                <strong>Accessible</strong>
+                <p>Phone, appointment CTA, and contact form are now easier to find and use.</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
 
-        window.addEventListener("scroll", updateHeaderOnScroll, { passive: true });
-        updateHeaderOnScroll();
+    <section class="section alt" id="services">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow dark">Services</span>
+          <h2>Three clear paths into your business</h2>
+          <div class="divider-line"></div>
+          <p>
+            The strongest-performing shops make the next step obvious. These cards keep each core
+            service distinct while preserving the content already on your site.
+          </p>
+        </div>
 
-        if (menuToggle) {
-          menuToggle.addEventListener("click", toggleMobileMenu);
-        }
+        <div class="services-grid">
+          <a class="service-link" href="#service-custom">
+            <article class="service-card">
+              <div class="service-icon">Build</div>
+              <h3>Custom Rifle Builds</h3>
+              <p>Purpose-built rifles tailored to your application and performance goals.</p>
+              <span class="service-cta">Learn more →</span>
+            </article>
+          </a>
 
-        mobileLinks.forEach((link) => {
-          link.addEventListener("click", closeMobileMenu);
-        });
+          <a class="service-link" href="#service-manufacturing">
+            <article class="service-card">
+              <div class="service-icon">FFL</div>
+              <h3>Firearm Sales and Transfers</h3>
+              <p>Firearm sales and transfers by appointment.</p>
+              <span class="service-cta">Learn more →</span>
+            </article>
+          </a>
 
-        window.addEventListener("resize", () => {
-          if (window.innerWidth > 900) {
-            closeMobileMenu();
-          }
-        });
+          <a class="service-link" href="#service-gunsmithing">
+            <article class="service-card">
+              <div class="service-icon">Shop</div>
+              <h3>Gunsmithing</h3>
+              <p>Repair, service, and optimization of existing firearms.</p>
+              <span class="service-cta">Learn more →</span>
+            </article>
+          </a>
+        </div>
+      </div>
+    </section>
 
-        const form = document.getElementById("apptForm");
-        const status = document.getElementById("formStatus");
-        if (!form) return;
+    <section class="section" id="gallery">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow dark">Gallery</span>
+          <h2>Visuals that support a premium perception</h2>
+          <div class="divider-line"></div>
+          <p>
+            A more editorial layout gives your imagery more impact and helps reinforce the precision-focused tone.
+          </p>
+        </div>
 
-        const btn = form.querySelector('button[type="submit"]');
+        <div class="gallery-shell">
+          <div class="gallery-feature">
+            <img
+              src="https://images.unsplash.com/photo-1585079542156-2755d9c8a094?auto=format&fit=crop&w=1200&q=80"
+              alt="Firearms workbench"
+            >
+            <div class="gallery-caption">
+              <strong>Craftsmanship</strong>
+              <span>Built around careful work, process, and detail</span>
+            </div>
+          </div>
 
-        const modal = document.getElementById("submitModal");
-        const panel = modal?.querySelector(".modal__panel");
-        const modalTitle = document.getElementById("modalTitle");
-        const modalBody = document.getElementById("modalBody");
+          <div class="gallery-stack">
+            <div class="gallery-tile">
+              <img
+                src="https://images.unsplash.com/photo-1613376023733-0a73315d9b06?auto=format&fit=crop&w=1000&q=80"
+                alt="Precision machining"
+              >
+            </div>
 
-        const AFTER_CLOSE_SCROLL_TARGET = "#contact";
-        let autoCloseTimer = null;
+            <div class="gallery-tile">
+              <img
+                src="https://images.unsplash.com/photo-1601933470928-c54fd49a88b8?auto=format&fit=crop&w=1000&q=80"
+                alt="Rifle detail"
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        function openModal(title, body) {
-          modalTitle.textContent = title;
-          modalBody.textContent = body;
+    <section class="section alt" id="service-custom">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow dark">Custom Rifle Builds</span>
+          <h2>Purpose-built around the way the rifle will actually be used</h2>
+          <div class="divider-line"></div>
+        </div>
 
-          modal.classList.add("is-open");
-          modal.setAttribute("aria-hidden", "false");
-          document.body.style.overflow = "hidden";
+        <div class="detail-grid">
+          <article class="detail-card">
+            <aside class="detail-aside">
+              <div>
+                <div class="kicker">Service focus</div>
+                <h3>Custom rifle builds</h3>
+              </div>
 
-          setTimeout(() => {
-            if (panel) {
-              panel.scrollIntoView({ behavior: "smooth", block: "center" });
-              panel.setAttribute("tabindex", "-1");
-              panel.focus({ preventScroll: true });
+              <div class="inline-actions">
+                <a href="#contact" class="btn-primary">Request a Build Consultation</a>
+              </div>
+            </aside>
+
+            <div class="detail-body">
+              <p>
+                Purpose-built rifles designed around your intended use case - hunting, competition, or duty applications.
+                We’ll discuss goals, budget, timeline, and component selection before work begins.
+              </p>
+
+              <ul>
+                <li>Component selection: barrel, action, trigger, stock/chassis</li>
+                <li>Build planning and clear communication throughout the entire process</li>
+                <li>Final function check with proof of accuracy target</li>
+                <li>Optional accessories including optics, optic mounts/rings, muzzle devices and bipods</li>
+              </ul>
+
+              <div class="inline-actions">
+                <a href="#contact" class="btn-secondary">Request a Build Consultation</a>
+                <a href="#services" class="btn-phone">Back to Services</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="service-manufacturing">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow dark">Firearm Sales and Transfers</span>
+          <h2>Appointment-based transfer support with clear next steps</h2>
+          <div class="divider-line"></div>
+        </div>
+
+        <div class="detail-grid">
+          <article class="detail-card">
+            <aside class="detail-aside">
+              <div>
+                <div class="kicker">Service focus</div>
+                <h3>Sales and transfers</h3>
+              </div>
+
+              <div class="inline-actions">
+                <a href="#contact" class="btn-primary">Ask About FFL Transfers</a>
+              </div>
+            </aside>
+
+            <div class="detail-body">
+              <p>
+                Have your firearm purchases delivered to our convenient central Plano location for transfer.
+                Please submit a <strong>Firearm Transfer Request</strong> prior to placing your order for our shipping address and FFL information.
+                We may also be able to match or beat a competitor’s pricing on customer orders.
+              </p>
+
+              <ul>
+                <li>Open for transfers by appointment only</li>
+                <li>Conveniently available after work hours</li>
+                <li>Ability to custom order firearms by request</li>
+                <li>In your inquiry please include: what firearm is being transferred, shipping FFL’s contact info (Name, Email, Address, Phone number)</li>
+                <li>Please contact us for updated pricing on transfers</li>
+                <li>All sales and transfers subject to a completed 4473 and FBI NICS background check (unless otherwise exempt due to Texas LTC)</li>
+              </ul>
+
+              <div class="inline-actions">
+                <a href="#contact" class="btn-secondary">Ask About FFL Transfers</a>
+                <a href="#services" class="btn-phone">Back to Services</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="service-gunsmithing">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow dark">Gunsmithing</span>
+          <h2>Service, repair, and optimization with a direct appointment path</h2>
+          <div class="divider-line"></div>
+        </div>
+
+        <div class="detail-grid">
+          <article class="detail-card">
+            <aside class="detail-aside">
+              <div>
+                <div class="kicker">Service focus</div>
+                <h3>Gunsmithing</h3>
+              </div>
+
+              <div class="inline-actions">
+                <a href="#contact" class="btn-primary">Request Service</a>
+              </div>
+            </aside>
+
+            <div class="detail-body">
+              <p>
+                Service, repair, and optimization of existing firearms. Describe the firearm, issue, and desired outcome,
+                and we’ll tell you the best next step.
+              </p>
+
+              <ul>
+                <li>Diagnostics, repair, and performance improvements</li>
+                <li>Professional workmanship with attention to safety</li>
+                <li>Appointment-based drop off and pickup</li>
+                <li>Scope mounting and bore sight</li>
+                <li>Gun cleaning</li>
+                <li>Muzzle device installation</li>
+                <li>AR15 assembly from parts</li>
+              </ul>
+
+              <div class="inline-actions">
+                <a href="#contact" class="btn-secondary">Request Service</a>
+                <a href="#services" class="btn-phone">Back to Services</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow dark">Contact</span>
+          <h2>Give customers more than one clean way to reach you</h2>
+          <div class="divider-line"></div>
+          <p>
+            The form remains intact and still submits to the same endpoint. Phone access is now more visible for visitors
+            who prefer to call first.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <aside class="contact-panel">
+            <span class="eyebrow">Direct contact</span>
+            <h3>Contact Lone Spur Precision</h3>
+            <p>
+              Please submit a request below for sales, transfers, info or appointments.
+              Please note, appointments are required for firearm pickup and drop off.
+            </p>
+
+            <div class="contact-points">
+              <div class="contact-point">
+                <span class="label">Phone</span>
+                <a href="tel:2149454443">214-945-4443</a>
+              </div>
+
+              <div class="contact-point">
+                <span class="label">Availability</span>
+                <strong>By appointment only</strong>
+              </div>
+
+              <div class="contact-point">
+                <span class="label">Service Area</span>
+                <strong>Plano, Texas</strong>
+              </div>
+
+              <div class="contact-point">
+                <span class="label">Best next step</span>
+                <strong>Call or submit the request form</strong>
+              </div>
+            </div>
+
+            <div class="inline-actions" style="margin-top:18px;">
+              <a href="tel:2149454443" class="btn-primary">Call 214-945-4443</a>
+            </div>
+          </aside>
+
+          <div class="contact-form-wrap">
+            <p>
+              Use the form below for sales, transfers, information requests, or appointments.
+            </p>
+
+            <form id="apptForm">
+              <div class="form-grid">
+                <label class="field-full">Request Type
+                  <select name="request_type" required>
+                    <option value="" disabled selected>Select one…</option>
+                    <option value="Sales">Sales Inquiry</option>
+                    <option value="Information">Information Request</option>
+                    <option value="Appointment">Appointment Request</option>
+                    <option value="Transfer">Firearm Transfer Request</option>
+                  </select>
+                </label>
+
+                <label>Name
+                  <input type="text" name="name" required>
+                </label>
+
+                <label>Email
+                  <input type="email" name="email" required>
+                </label>
+
+                <label>Phone (optional)
+                  <input type="tel" name="phone">
+                </label>
+
+                <label class="field-full">Message
+                  <textarea name="message" rows="6" required></textarea>
+                </label>
+
+                <div class="field-full">
+                  <div class="cf-turnstile" data-sitekey="0x4AAAAAACX1GoTVIhQ0xV5o"></div>
+                </div>
+
+                <div class="field-full">
+                  <input type="text" name="company" style="display:none">
+                </div>
+              </div>
+
+              <button type="submit">Submit Contact Form</button>
+              <p id="formStatus" aria-live="polite"></p>
+            </form>
+
+            <p class="contact-note">
+              Prefer to speak directly? Call <a href="tel:2149454443">214-945-4443</a>.
+            </p>
+          </div>
+        </div>
+
+        <div id="submitModal" class="modal" aria-hidden="true">
+          <div class="modal__backdrop" data-close="true"></div>
+
+          <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <button type="button" class="modal__close" aria-label="Close" data-close="true">×</button>
+
+            <h3 id="modalTitle" class="modal__title">Message sent</h3>
+            <p id="modalBody" class="modal__body">We’ll be in touch shortly.</p>
+
+            <div class="modal__actions">
+              <button type="button" class="modal__btn" data-close="true">OK</button>
+            </div>
+          </div>
+        </div>
+
+        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+        <script>
+          document.addEventListener("DOMContentLoaded", () => {
+            const header = document.getElementById("site-header");
+            const menuToggle = document.getElementById("menuToggle");
+            const mobilePanel = document.getElementById("mobilePanel");
+            const mobileLinks = mobilePanel ? mobilePanel.querySelectorAll("a") : [];
+
+            function updateHeaderOnScroll() {
+              if (!header) return;
+              if (window.scrollY > 24) {
+                header.classList.add("scrolled");
+              } else {
+                header.classList.remove("scrolled");
+              }
             }
-          }, 0);
 
-          autoCloseTimer = setTimeout(() => closeModal({ scrollAfter: true }), 7000);
-        }
+            function closeMobileMenu() {
+              if (!menuToggle || !mobilePanel) return;
+              menuToggle.setAttribute("aria-expanded", "false");
+              menuToggle.setAttribute("aria-label", "Open menu");
+              mobilePanel.classList.remove("open");
+              document.body.style.overflow = "";
+            }
 
-        function closeModal({ scrollAfter = true } = {}) {
-          modal.classList.remove("is-open");
-          modal.setAttribute("aria-hidden", "true");
+            function openMobileMenu() {
+              if (!menuToggle || !mobilePanel) return;
+              menuToggle.setAttribute("aria-expanded", "true");
+              menuToggle.setAttribute("aria-label", "Close menu");
+              mobilePanel.classList.add("open");
+              document.body.style.overflow = "hidden";
+            }
 
-          const mobileMenuOpen = mobilePanel && mobilePanel.classList.contains("open");
-          document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
+            function toggleMobileMenu() {
+              if (!menuToggle) return;
+              const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+              if (isOpen) {
+                closeMobileMenu();
+              } else {
+                openMobileMenu();
+              }
+            }
 
-          if (autoCloseTimer) clearTimeout(autoCloseTimer);
+            window.addEventListener("scroll", updateHeaderOnScroll, { passive: true });
+            updateHeaderOnScroll();
 
-          if (scrollAfter && AFTER_CLOSE_SCROLL_TARGET) {
-            window.location.hash = AFTER_CLOSE_SCROLL_TARGET;
-            const target = document.querySelector(AFTER_CLOSE_SCROLL_TARGET);
-            if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
-        }
+            if (menuToggle) {
+              menuToggle.addEventListener("click", toggleMobileMenu);
+            }
 
-        modal.addEventListener("click", (e) => {
-          if (e.target?.dataset?.close === "true") closeModal({ scrollAfter: true });
-        });
-
-        document.addEventListener("keydown", (e) => {
-          if (e.key === "Escape" && modal.classList.contains("is-open")) {
-            closeModal({ scrollAfter: true });
-          } else if (e.key === "Escape") {
-            closeMobileMenu();
-          }
-        });
-
-        function withTimeout(ms) {
-          const controller = new AbortController();
-          const id = setTimeout(() => controller.abort(), ms);
-          return { controller, clear: () => clearTimeout(id) };
-        }
-
-        function getSuccessCopy(requestType) {
-          if (requestType === "Sales") {
-            return {
-              title: "Sales inquiry received",
-              body: "Thank you — we have received your sales inquiry. We’ll reach out shortly with next steps and availability."
-            };
-          }
-          if (requestType === "Appointment") {
-            return {
-              title: "Appointment request received",
-              body: "Thanks — we have received your appointment request. We’ll follow up to confirm details and scheduling."
-            };
-          }
-          if (requestType === "Information") {
-            return {
-              title: "Information request received",
-              body: "Thanks — we have received your request. We’ll be in touch soon."
-            };
-          }
-          if (requestType === "Transfer") {
-            return {
-              title: "Transfer request received",
-              body: "Thanks — we received your firearm transfer request. We’ll follow up with FFL details, next steps, and scheduling."
-            };
-          }
-
-          return {
-            title: "Request received",
-            body: "Thanks — we got your message. We’ll be in touch soon."
-          };
-        }
-
-        form.addEventListener("submit", async (e) => {
-          e.preventDefault();
-          status.textContent = "Sending…";
-          btn.disabled = true;
-
-          const t = withTimeout(15000);
-
-          try {
-            const formData = new FormData(form);
-            const requestType = (formData.get("request_type") || "").toString();
-
-            const res = await fetch("/api/appointment", {
-              method: "POST",
-              body: formData,
-              signal: t.controller.signal
+            mobileLinks.forEach((link) => {
+              link.addEventListener("click", closeMobileMenu);
             });
 
-            const text = await res.text();
-            let data = {};
-            try { data = JSON.parse(text); } catch {}
+            window.addEventListener("resize", () => {
+              if (window.innerWidth > 920) {
+                closeMobileMenu();
+              }
+            });
 
-            if (!res.ok) {
-              status.textContent = data.error
-                ? `Error (${res.status}): ${data.error}`
-                : `Error (${res.status}). Please try again.`;
-              return;
+            const form = document.getElementById("apptForm");
+            const status = document.getElementById("formStatus");
+            if (!form) return;
+
+            const btn = form.querySelector('button[type="submit"]');
+
+            const modal = document.getElementById("submitModal");
+            const panel = modal?.querySelector(".modal__panel");
+            const modalTitle = document.getElementById("modalTitle");
+            const modalBody = document.getElementById("modalBody");
+
+            const AFTER_CLOSE_SCROLL_TARGET = "#contact";
+            let autoCloseTimer = null;
+
+            function openModal(title, body) {
+              modalTitle.textContent = title;
+              modalBody.textContent = body;
+
+              modal.classList.add("is-open");
+              modal.setAttribute("aria-hidden", "false");
+              document.body.style.overflow = "hidden";
+
+              setTimeout(() => {
+                if (panel) {
+                  panel.scrollIntoView({ behavior: "smooth", block: "center" });
+                  panel.setAttribute("tabindex", "-1");
+                  panel.focus({ preventScroll: true });
+                }
+              }, 0);
+
+              autoCloseTimer = setTimeout(() => closeModal({ scrollAfter: true }), 7000);
             }
 
-            status.textContent = "";
+            function closeModal({ scrollAfter = true } = {}) {
+              modal.classList.remove("is-open");
+              modal.setAttribute("aria-hidden", "true");
 
-            const copy = getSuccessCopy(requestType);
-            openModal(copy.title, copy.body);
+              const mobileMenuOpen = mobilePanel && mobilePanel.classList.contains("open");
+              document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
 
-            form.reset();
+              if (autoCloseTimer) clearTimeout(autoCloseTimer);
 
-          } catch (err) {
-            status.textContent = err.name === "AbortError"
-              ? "Timed out. Please try again."
-              : "Network error. Please try again.";
-          } finally {
-            t.clear();
-            if (window.turnstile) window.turnstile.reset();
-            btn.disabled = false;
-          }
-        });
-      });
-    </script>
-  </section>
+              if (scrollAfter && AFTER_CLOSE_SCROLL_TARGET) {
+                window.location.hash = AFTER_CLOSE_SCROLL_TARGET;
+                const target = document.querySelector(AFTER_CLOSE_SCROLL_TARGET);
+                if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+              }
+            }
 
-  <section class="disclaimer">
-    <strong>Legal & Compliance Notice:</strong>
-    <p>
-      All firearms services are performed in compliance with applicable federal,
-      state, and local laws. Lone Spur Industries LLC d/b/a Lone Spur Precision does not provide legal advice.
-      Customers are responsible for ensuring compliance with all regulations.
-    </p>
-  </section>
+            modal.addEventListener("click", (e) => {
+              if (e.target?.dataset?.close === "true") closeModal({ scrollAfter: true });
+            });
+
+            document.addEventListener("keydown", (e) => {
+              if (e.key === "Escape" && modal.classList.contains("is-open")) {
+                closeModal({ scrollAfter: true });
+              } else if (e.key === "Escape") {
+                closeMobileMenu();
+              }
+            });
+
+            function withTimeout(ms) {
+              const controller = new AbortController();
+              const id = setTimeout(() => controller.abort(), ms);
+              return { controller, clear: () => clearTimeout(id) };
+            }
+
+            function getSuccessCopy(requestType) {
+              if (requestType === "Sales") {
+                return {
+                  title: "Sales inquiry received",
+                  body: "Thank you — we have received your sales inquiry. We’ll reach out shortly with next steps and availability."
+                };
+              }
+              if (requestType === "Appointment") {
+                return {
+                  title: "Appointment request received",
+                  body: "Thanks — we have received your appointment request. We’ll follow up to confirm details and scheduling."
+                };
+              }
+              if (requestType === "Information") {
+                return {
+                  title: "Information request received",
+                  body: "Thanks — we have received your request. We’ll be in touch soon."
+                };
+              }
+              if (requestType === "Transfer") {
+                return {
+                  title: "Transfer request received",
+                  body: "Thanks — we received your firearm transfer request. We’ll follow up with FFL details, next steps, and scheduling."
+                };
+              }
+
+              return {
+                title: "Request received",
+                body: "Thanks — we got your message. We’ll be in touch soon."
+              };
+            }
+
+            form.addEventListener("submit", async (e) => {
+              e.preventDefault();
+              status.textContent = "Sending…";
+              btn.disabled = true;
+
+              const t = withTimeout(15000);
+
+              try {
+                const formData = new FormData(form);
+                const requestType = (formData.get("request_type") || "").toString();
+
+                const res = await fetch("/api/appointment", {
+                  method: "POST",
+                  body: formData,
+                  signal: t.controller.signal
+                });
+
+                const text = await res.text();
+                let data = {};
+                try { data = JSON.parse(text); } catch {}
+
+                if (!res.ok) {
+                  status.textContent = data.error
+                    ? `Error (${res.status}): ${data.error}`
+                    : `Error (${res.status}). Please try again.`;
+                  return;
+                }
+
+                status.textContent = "";
+
+                const copy = getSuccessCopy(requestType);
+                openModal(copy.title, copy.body);
+
+                form.reset();
+
+              } catch (err) {
+                status.textContent = err.name === "AbortError"
+                  ? "Timed out. Please try again."
+                  : "Network error. Please try again.";
+              } finally {
+                t.clear();
+                if (window.turnstile) window.turnstile.reset();
+                btn.disabled = false;
+              }
+            });
+          });
+        </script>
+      </div>
+    </section>
+
+    <section class="disclaimer">
+      <div class="container">
+        <strong>Legal & Compliance Notice:</strong>
+        <p>
+          All firearms services are performed in compliance with applicable federal,
+          state, and local laws. Lone Spur Industries LLC d/b/a Lone Spur Precision does not provide legal advice.
+          Customers are responsible for ensuring compliance with all regulations.
+        </p>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    &copy; 2026 Lone Spur Industries LLC d/b/a Lone Spur Precision. All rights reserved.
+    <div class="container footer-inner">
+      <div>
+        &copy; 2026 Lone Spur Industries LLC d/b/a Lone Spur Precision. All rights reserved.
+      </div>
+
+      <div class="footer-links">
+        <a href="tel:2149454443">214-945-4443</a>
+        <a href="#services">Services</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
   </footer>
 
+  <a class="floating-call" href="tel:2149454443" aria-label="Call Lone Spur Precision">
+    Call
+  </a>
 </body>
 </html>
