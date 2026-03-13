@@ -102,130 +102,41 @@
     .btn-primary:hover{ filter: brightness(1.05); }
 
     /* ---------- HERO ---------- */
-    .hero {
-      radial-gradient(900px 520px at 20% 30%, rgba(156,124,58,.35), rgba(0,0,0,0) 62%),
+.hero {
+  background:
+    radial-gradient(900px 520px at 20% 30%, rgba(156,124,58,.35), rgba(0,0,0,0) 62%),
     linear-gradient(rgba(0,0,0,.72), rgba(0,0,0,.82)),
-    url("./images/hero-bg.png");
+    url("/images/hero-bg.png");
 
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+
   color: var(--text-light);
   position: relative;
   overflow: hidden;
-    }
+}
 
-    .hero::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 10% 20%, rgba(255,255,255,.08), transparent 35%),
-        radial-gradient(circle at 80% 40%, rgba(255,255,255,.06), transparent 38%),
-        radial-gradient(circle at 30% 80%, rgba(255,255,255,.05), transparent 40%);
-      mix-blend-mode: overlay;
-      pointer-events:none;
-      opacity:.55;
-    }
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(255,255,255,.08), transparent 35%),
+    radial-gradient(circle at 80% 40%, rgba(255,255,255,.06), transparent 38%),
+    radial-gradient(circle at 30% 80%, rgba(255,255,255,.05), transparent 40%);
+  mix-blend-mode: overlay;
+  pointer-events:none;
+  opacity:.55;
+}
 
-    .hero-inner {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 92px 24px 78px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .kicker {
-      font-family: "Oswald", system-ui, sans-serif;
-      font-size: 0.95rem;
-      letter-spacing: 3px;
-      color: var(--accent);
-      margin-bottom: 14px;
-      text-transform: uppercase;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .kicker::before{
-      content:"";
-      width: 34px;
-      height: 2px;
-      background: var(--accent);
-      display:inline-block;
-    }
-
-    .hero h1 {
-      font-family: "Oswald", system-ui, sans-serif;
-      font-size: clamp(2.4rem, 5.4vw, 3.6rem);
-      margin: 0 0 12px;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      line-height: 1.08;
-    }
-
-    .hero p {
-      font-size: 1.05rem;
-      max-width: 720px;
-      color: rgba(255,255,255,.86);
-      margin: 0;
-    }
-
-    .hero-cta{
-      display:flex;
-      gap:12px;
-      margin-top: 18px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .btn-hero{
-      display:inline-block;
-      background: var(--accent);
-      color:#111;
-      padding: 12px 16px;
-      border-radius: 12px;
-      text-decoration:none;
-      font-weight: 800;
-      font-family: "Oswald", system-ui, sans-serif;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      box-shadow: 0 10px 26px rgba(0,0,0,.30);
-    }
-    .btn-hero:hover{ filter: brightness(1.05); }
-
-    .btn-ghost{
-      display:inline-block;
-      border: 1px solid rgba(255,255,255,.28);
-      color:#fff;
-      padding: 12px 16px;
-      border-radius: 12px;
-      text-decoration:none;
-      font-weight: 700;
-      font-family: "Oswald", system-ui, sans-serif;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      background: rgba(0,0,0,.22);
-    }
-    .btn-ghost:hover{
-      background: rgba(0,0,0,.32);
-      border-color: rgba(255,255,255,.38);
-    }
-
-    .hero-stamp{
-      margin-top: 20px;
-      display: inline-block;
-      padding: 8px 14px;
-      border: 2px solid rgba(255,255,255,.35);
-      color: rgba(255,255,255,.9);
-      font-family: "Oswald", system-ui, sans-serif;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      font-size: 0.85rem;
-      background: rgba(0,0,0,.35);
-      border-radius: 4px;
-    }
-
+.hero-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 120px 24px 90px;
+  position: relative;
+  z-index: 1;
+}
     /* ---------- SECTIONS ---------- */
     .section {
       max-width: var(--max-width);
