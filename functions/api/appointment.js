@@ -150,15 +150,20 @@ Submitted: ${submittedAt}
   } else if (!env.BREVO_LIST_ID) {
     console.error("BREVO_LIST_ID is missing.");
   } else {
-    const brevoPayload = {
-      email,
-      attributes: {
-        FIRSTNAME: name,
-        SMS: phone ? formatPhoneForBrevo(phone) : ""
-      },
-      listIds: [Number(env.BREVO_LIST_ID)],
-      updateEnabled: true
-    };
+    
+    const parts = name.trim().split(/\s+/);
+const firstName = parts.shift() || "";
+const lastName = parts.join(" ");
+
+const brevoPayload = {
+  email,
+  attributes: {
+    FIRSTNAME: firstName,
+    LASTNAME: lastName
+  },
+  listIds: [Number(env.BREVO_LIST_ID)],
+  updateEnabled: true
+};
 
     const brevoRes = await fetch("https://api.brevo.com/v3/contacts", {
       method: "POST",
