@@ -153,8 +153,8 @@ Submitted: ${submittedAt}
         const brevoPayload = {
           email,
           attributes: {
-            FNAME: name,
-            PHONE: phone || ""
+            FIRSTNAME: name,
+            SMS: phone || ""
           },
           listIds: [Number(env.2)],
           updateEnabled: true
