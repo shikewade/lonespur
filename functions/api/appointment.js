@@ -156,7 +156,7 @@ Submitted: ${submittedAt}
             FNAME: name,
             PHONE: phone || ""
           },
-          listIds: [Number(env.BREVO_LIST_ID)],
+          listIds: [Number(env.2)],
           updateEnabled: true
         };
 
