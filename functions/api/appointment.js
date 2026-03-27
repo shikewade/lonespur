@@ -145,36 +145,36 @@ Submitted: ${submittedAt}
 
     // NEW: Add to Brevo if customer checked the box
     if (marketingOptIn) {
-      if (!env.BREVO_API_KEY) {
-        console.error("BREVO_API_KEY is missing.");
-      } else if (!env.BREVO_LIST_ID) {
-        console.error("BREVO_LIST_ID is missing.");
-      } else {
-        const brevoPayload = {
-          email,
-          attributes: {
-            FIRSTNAME: name,
-            SMS: phone || ""
-          },
-          listIds: [Number(env.2)],
-          updateEnabled: true
-        };
+  if (!env.BREVO_API_KEY) {
+    console.error("BREVO_API_KEY is missing.");
+  } else if (!env.BREVO_LIST_ID) {
+    console.error("BREVO_LIST_ID is missing.");
+  } else {
+    const brevoPayload = {
+      email,
+      attributes: {
+        FIRSTNAME: name,
+        SMS: phone ? formatPhoneForBrevo(phone) : ""
+      },
+      listIds: [Number(env.BREVO_LIST_ID)],
+      updateEnabled: true
+    };
 
-        const brevoRes = await fetch("https://api.brevo.com/v3/contacts", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "api-key": env.BREVO_API_KEY
-          },
-          body: JSON.stringify(brevoPayload)
-        });
+    const brevoRes = await fetch("https://api.brevo.com/v3/contacts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "api-key": env.BREVO_API_KEY
+      },
+      body: JSON.stringify(brevoPayload)
+    });
 
-        if (!brevoRes.ok) {
-          const brevoText = await brevoRes.text();
-          console.error("Brevo error:", brevoText);
-        }
-      }
+    if (!brevoRes.ok) {
+      const brevoText = await brevoRes.text();
+      console.error("Brevo error:", brevoText);
     }
+  }
+}
 
     return json({ ok: true });
   } catch (err) {
@@ -188,4 +188,12 @@ function json(data, status = 200) {
     status,
     headers: { "Content-Type": "application/json" }
   });
+}
+function formatPhoneForBrevo(phone) {
+  const digits = (phone || "").replace(/\D/g, "");
+
+  if (digits.length === 10) return `+1${digits}`;
+  if (digits.length === 11 && digits.startsWith("1")) return `+${digits}`;
+
+  return digits ? `+${digits}` : "";
 }
