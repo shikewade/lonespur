@@ -13,10 +13,13 @@ export async function onRequestPost({ request, env }) {
     const phone = (form.get("phone") || "").toString().trim();
     const message = (form.get("message") || "").toString().trim();
     const token = (form.get("cf-turnstile-response") || "").toString().trim();
-
     const requestType = (form.get("request_type") || "").toString().trim();
 
-    // ✅ ADDED: Transfer
+    // NEW: marketing checkbox
+    const marketingOptIn =
+      (form.get("marketing_opt_in") || "").toString().trim() === "yes";
+
+    // Allowed request types
     const allowedTypes = ["Sales", "Information", "Appointment", "Transfer"];
 
     // Validate required fields
@@ -33,14 +36,17 @@ export async function onRequestPost({ request, env }) {
     if (env.TURNSTILE_SECRET_KEY) {
       if (!token) return json({ error: "Spam check missing." }, 400);
 
-      const verify = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
-        method: "POST",
-        body: new URLSearchParams({
-          secret: env.TURNSTILE_SECRET_KEY,
-          response: token,
-          remoteip: request.headers.get("CF-Connecting-IP") || ""
-        })
-      }).then(r => r.json());
+      const verify = await fetch(
+        "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+        {
+          method: "POST",
+          body: new URLSearchParams({
+            secret: env.TURNSTILE_SECRET_KEY,
+            response: token,
+            remoteip: request.headers.get("CF-Connecting-IP") || ""
+          })
+        }
+      ).then(r => r.json());
 
       if (!verify.success) {
         return json({ error: "Spam check failed." }, 403);
@@ -52,8 +58,6 @@ export async function onRequestPost({ request, env }) {
       Sales: env.TO_EMAIL_SALES,
       Information: env.TO_EMAIL_INFO,
       Appointment: env.TO_EMAIL_APPOINTMENT,
-
-      // ✅ ADDED: Transfer mapping to your new secrets
       Transfer: env.TO_EMAIL_TRANSFERS
     };
 
@@ -61,8 +65,6 @@ export async function onRequestPost({ request, env }) {
       Sales: env.FROM_EMAIL_SALES,
       Information: env.FROM_EMAIL_INFO,
       Appointment: env.FROM_EMAIL_APPOINTMENT,
-
-      // ✅ ADDED: Transfer mapping to your new secrets
       Transfer: env.FROM_EMAIL_TRANSFERS
     };
 
@@ -84,10 +86,11 @@ export async function onRequestPost({ request, env }) {
       email,
       phone,
       message,
+      marketingOptIn,
       toEmail,
       fromEmail,
       ip: request.headers.get("CF-Connecting-IP") || null,
-      userAgent: request.headers.get("User-Agent") || null,
+      userAgent: request.headers.get("User-Agent") || null
     };
 
     if (env.APPOINTMENTS_KV) {
@@ -100,7 +103,9 @@ export async function onRequestPost({ request, env }) {
     }
 
     // Email via Resend
-    if (!env.RESEND_API_KEY) return json({ error: "Missing RESEND_API_KEY." }, 500);
+    if (!env.RESEND_API_KEY) {
+      return json({ error: "Missing RESEND_API_KEY." }, 500);
+    }
 
     const subject = `[${requestType}] Request — ${name}`;
     const text =
@@ -110,6 +115,7 @@ Type: ${requestType}
 Name: ${name}
 Email: ${email}
 Phone: ${phone || "(not provided)"}
+Marketing Opt-In: ${marketingOptIn ? "Yes" : "No"}
 
 Message:
 ${message}
@@ -137,8 +143,42 @@ Submitted: ${submittedAt}
       return json({ error: "Email failed. Please try again later." }, 502);
     }
 
+    // NEW: Add to Brevo if customer checked the box
+    if (marketingOptIn) {
+      if (!env.BREVO_API_KEY) {
+        console.error("BREVO_API_KEY is missing.");
+      } else if (!env.BREVO_LIST_ID) {
+        console.error("BREVO_LIST_ID is missing.");
+      } else {
+        const brevoPayload = {
+          email,
+          attributes: {
+            FNAME: name,
+            PHONE: phone || ""
+          },
+          listIds: [Number(env.BREVO_LIST_ID)],
+          updateEnabled: true
+        };
+
+        const brevoRes = await fetch("https://api.brevo.com/v3/contacts", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "api-key": env.BREVO_API_KEY
+          },
+          body: JSON.stringify(brevoPayload)
+        });
+
+        if (!brevoRes.ok) {
+          const brevoText = await brevoRes.text();
+          console.error("Brevo error:", brevoText);
+        }
+      }
+    }
+
     return json({ ok: true });
-  } catch {
+  } catch (err) {
+    console.error("Form handler error:", err);
     return json({ error: "Bad request." }, 400);
   }
 }
