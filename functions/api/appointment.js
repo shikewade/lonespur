@@ -144,7 +144,49 @@ Submitted: ${submittedAt}
     }
 
     // NEW: Add to Brevo if customer checked the box
-   if (marketingOptIn) {
+    // NEW: Add to Brevo if customer checked the box
+if (marketingOptIn) {
+  if (!env.BREVO_API_KEY) {
+    return json({ error: "BREVO_API_KEY is missing." }, 500);
+  }
+
+  if (!env.BREVO_LIST_ID) {
+    return json({ error: "BREVO_LIST_ID is missing." }, 500);
+  }
+
+  const brevoPayload = {
+    email,
+    attributes: {
+      FIRSTNAME: name
+    },
+    listIds: [Number(env.BREVO_LIST_ID)],
+    updateEnabled: true
+  };
+
+  const brevoRes = await fetch("https://api.brevo.com/v3/contacts", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "api-key": env.BREVO_API_KEY
+    },
+    body: JSON.stringify(brevoPayload)
+  });
+
+  const brevoText = await brevoRes.text();
+
+  return json({
+    ok: true,
+    debug: {
+      name,
+      email,
+      marketingOptIn,
+      brevoPayload,
+      brevoStatus: brevoRes.status,
+      brevoBody: brevoText
+    }
+  });
+}
+   /*if (marketingOptIn) {
   if (!env.BREVO_API_KEY) {
     console.error("BREVO_API_KEY is missing.");
   } else if (!env.BREVO_LIST_ID) {
@@ -179,6 +221,7 @@ Submitted: ${submittedAt}
     }
   }
 }
+    */
 
     return json({ ok: true });
   } catch (err) {
