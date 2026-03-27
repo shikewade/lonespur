@@ -164,6 +164,24 @@ const brevoPayload = {
   listIds: [Number(env.BREVO_LIST_ID)],
   updateEnabled: true
 };
+    console.log("Brevo payload:", JSON.stringify(brevoPayload));
+
+  const brevoRes = await fetch("https://api.brevo.com/v3/contacts", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "api-key": env.BREVO_API_KEY
+    },
+    body: JSON.stringify(brevoPayload)
+  });
+
+  const brevoText = await brevoRes.text();
+  console.log("Brevo response:", brevoRes.status, brevoText);
+
+  if (!brevoRes.ok) {
+    console.error("Brevo error:", brevoText);
+  }
+}
 
     const brevoRes = await fetch("https://api.brevo.com/v3/contacts", {
       method: "POST",
