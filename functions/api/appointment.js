@@ -223,7 +223,7 @@ if (marketingOptIn) {
 }
     */
 
-    return json({ ok: true });
+  /*  return json({ ok: true });
   } catch (err) {
     console.error("Form handler error:", err);
     return json({ error: "Bad request." }, 400);
@@ -243,4 +243,13 @@ function formatPhoneForBrevo(phone) {
   if (digits.length === 11 && digits.startsWith("1")) return `+${digits}`;
 
   return digits ? `+${digits}` : "";
-}
+}*/
+    return json({
+  ok: true,
+  debug: {
+    name,
+    email,
+    marketingOptIn,
+    note: "Brevo block did not run"
+  }
+});
