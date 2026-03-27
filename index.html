@@ -263,22 +263,25 @@
       border-bottom-color: rgba(255,255,255,.10);
     }
 
-    .topbar-inner {
-      min-height: var(--header-height);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
+   .topbar-inner {
+  min-height: var(--header-height);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 24px;
     }
 
+
     .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      text-decoration: none;
-      color: #fff;
-      min-width: 0;
-    }
+  grid-column: 2;
+  justify-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: #fff;
+  min-width: 0;
+}
 
     .brand-mark {
       width: 56px;
@@ -511,27 +514,34 @@
     }
 
     .hero-inner {
-      position: relative;
-      z-index: 1;
-      min-height: inherit;
-      display: grid;
-      grid-template-columns: minmax(0, 1.12fr) minmax(300px, .68fr);
-      align-items: center;
-      gap: 42px;
-      padding: 58px 0 50px;
-    }
+  position: relative;
+  z-index: 1;
+  min-height: inherit;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-items: center;
+  gap: 30px;
+  padding: 58px 0 50px;
+  text-align: center;
+}
 
-    .hero-copy {
-      max-width: 760px;
-    }
+.hero-copy {
+  max-width: 860px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-    .hero-logo {
-      width: min(620px, 96%);
-      margin: 0 0 12px;
-      filter:
-        drop-shadow(0 14px 30px rgba(0,0,0,.42))
-        drop-shadow(0 0 18px rgba(255,255,255,.05));
-    }
+.hero-logo {
+  width: min(620px, 96%);
+  margin: 0 auto 12px;
+  filter:
+    drop-shadow(0 14px 30px rgba(0,0,0,.42))
+    drop-shadow(0 0 18px rgba(255,255,255,.05));
+}
 
     .hero-logo img {
       width: 100%;
@@ -550,20 +560,22 @@
     }
 
     .hero-subtitle {
-      max-width: 720px;
-      margin: 0;
-      color: rgba(255,255,255,.88);
-      font-size: 1.05rem;
-      text-shadow: 0 4px 16px rgba(0,0,0,.28);
-    }
+  max-width: 720px;
+  margin: 0 auto;
+  color: rgba(255,255,255,.88);
+  font-size: 1.05rem;
+  text-shadow: 0 4px 16px rgba(0,0,0,.28);
+}
 
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 12px;
-      margin-top: 24px;
-    }
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
 
     .hero-meta {
       display: flex;
@@ -584,16 +596,19 @@
       font-size: .83rem;
     }
 
-    .hero-sidecard {
-      background:
-        linear-gradient(180deg, rgba(20,22,26,.82), rgba(12,13,16,.90));
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 22px;
-      padding: 26px;
-      box-shadow: var(--shadow-strong);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
+   .hero-sidecard {
+  width: min(760px, 100%);
+  margin: 0 auto;
+  text-align: left;
+  background:
+    linear-gradient(180deg, rgba(20,22,26,.82), rgba(12,13,16,.90));
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 22px;
+  padding: 26px;
+  box-shadow: var(--shadow-strong);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
 
     .hero-sidecard h2 {
       margin: 0 0 10px;
@@ -911,36 +926,42 @@
     }
 
     .detail-aside {
-      position: relative;
-      border-radius: 18px;
-      padding: 22px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 18px;
-      overflow: hidden;
-      min-height: 260px;
-      background:
-        linear-gradient(180deg, rgba(8,10,12,.45), rgba(8,10,12,.72)),
-        url("/images/gm-background.png");
-      background-size: cover;
-      background-position: center;
-      border: 1px solid rgba(255,255,255,.08);
-    }
+  position: relative;
+  border-radius: 18px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+  overflow: hidden;
+  min-height: 260px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid rgba(255,255,255,.08);
+}
 
-    .detail-aside::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.18));
-      pointer-events: none;
-    }
+.detail-aside::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8,10,12,.38), rgba(8,10,12,.74));
+  z-index: 0;
+}
 
-    .detail-aside > * {
-      position: relative;
-      z-index: 1;
-    }
+.detail-aside::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.18));
+  pointer-events: none;
+  z-index: 0;
+}
 
+.detail-aside > * {
+  position: relative;
+  z-index: 1;
+}
     .detail-aside .kicker {
       color: rgba(255,255,255,.66);
       font-family: "Oswald", system-ui, sans-serif;
@@ -1307,28 +1328,42 @@
     }
 
     @media (max-width: 920px) {
-      .topbar-nav,
-      .nav-wrap > .btn-phone {
-        display: none;
-      }
+  .topbar-inner {
+    grid-template-columns: 1fr auto;
+  }
 
-      .menu-toggle {
-        display: inline-flex;
-      }
+  .brand {
+    grid-column: 1;
+    justify-self: start;
+  }
 
-      .brand-name {
-        font-size: 1.06rem;
-        letter-spacing: 2px;
-      }
+  .nav-wrap {
+    grid-column: 2;
+    justify-self: end;
+  }
 
-      .brand-tag {
-        font-size: .68rem;
-      }
+  .topbar-nav,
+  .nav-wrap > .btn-primary {
+    display: none;
+  }
 
-      .utility-inner {
-        min-height: 42px;
-      }
-    }
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .brand-name {
+    font-size: 1.06rem;
+    letter-spacing: 2px;
+  }
+
+  .brand-tag {
+    font-size: .68rem;
+  }
+
+  .utility-inner {
+    min-height: 42px;
+  }
+}
 
     @media (max-width: 768px) {
       :root {
@@ -1538,46 +1573,45 @@
 
   <main id="top">
     <section class="hero">
-      <div class="container hero-inner">
-        <div class="hero-copy">
-          <div class="hero-logo">
-            <img src="/images/logo-white.png" alt="Lone Spur Precision">
-          </div>
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <div class="hero-logo">
+        <img src="/images/logo-white.png" alt="Lone Spur Precision">
+      </div>
 
-          <h1>Precision-Driven Rifle Builds, Transfers, and Gunsmithing</h1>
+      <h1>Precision-Driven Rifle Builds, Transfers, and Gunsmithing</h1>
 
-          <p class="hero-subtitle">
-            Custom rifle builds, firearm sales & transfers, and professional
-            gunsmithing — handled with craftsmanship, straight talk, and customer-centered
-            service in Plano, Texas.
-          </p>
+      <p class="hero-subtitle">
+        Custom rifle builds, firearm sales & transfers, and professional
+        gunsmithing — handled with craftsmanship, straight talk, and customer-centered
+        service in Plano, Texas.
+      </p>
 
-          <div class="hero-actions">
-            <a href="#contact" class="btn-primary">Request an Appointment</a>
-            <a href="#services" class="btn-ghost">View Services</a>
-            <a href="tel:2149454443" class="btn-phone">Call 214-945-4443</a>
-          </div>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Request an Appointment</a>
+        <a href="#services" class="btn-ghost">View Services</a>
+        <a href="tel:2149454443" class="btn-phone">Call 214-945-4443</a>
+      </div>
+    </div>
 
 
         <aside class="hero-sidecard" aria-label="Quick overview">
-          <h2>Built around your needs and use case</h2>
-          <p>
-            Whether you need a custom rifle build, firearm transfers, or service work,
-            Lone Spur Precision is ready to make it happen.
-          </p>
+      <h2>Built around your needs and use case</h2>
+      <p>
+        Whether you need a custom rifle build, firearm transfers, or service work,
+        Lone Spur Precision is ready to make it happen.
+      </p>
 
-          <ul class="quick-list">
-            <li>Custom rifle builds tailored to your application and performance goals</li>
-            <li>Firearm sales and transfers by appointment</li>
-            <li>Repair, service, and optimization of existing firearms</li>
-          </ul>
+      <ul class="quick-list">
+        <li>Custom rifle builds tailored to your application and performance goals</li>
+        <li>Firearm sales and transfers by appointment</li>
+        <li>Repair, service, and optimization of existing firearms</li>
+      </ul>
 
-          <div class="hero-sidecard-actions">
-          </div>
-        </aside>
-      </div>
-    </section>
-
+      <div class="hero-sidecard-actions"></div>
+    </aside>
+  </div>
+</section>
     <section class="trust-strip" aria-label="Business highlights">
       <div class="container">
         <div class="trust-grid">
