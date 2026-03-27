@@ -15,7 +15,7 @@ export async function onRequestPost({ request, env }) {
     const token = (form.get("cf-turnstile-response") || "").toString().trim();
     const requestType = (form.get("request_type") || "").toString().trim();
 
-    // NEW: marketing checkbox
+    // Marketing checkbox
     const marketingOptIn =
       (form.get("marketing_opt_in") || "").toString().trim() === "yes";
 
@@ -143,45 +143,38 @@ Submitted: ${submittedAt}
       return json({ error: "Email failed. Please try again later." }, 502);
     }
 
-    // NEW: Add to Brevo if customer checked the box
+    // Add to Brevo if customer checked the box
+    if (marketingOptIn) {
+      if (!env.BREVO_API_KEY) {
+        console.error("BREVO_API_KEY is missing.");
+      } else if (!env.BREVO_LIST_ID) {
+        console.error("BREVO_LIST_ID is missing.");
+      } else {
+        const brevoPayload = {
+          email,
+          attributes: {
+            FIRSTNAME: name,
+            SMS: phone ? formatPhoneForBrevo(phone) : ""
+          },
+          listIds: [Number(env.BREVO_LIST_ID)],
+          updateEnabled: true
+        };
 
-   if (marketingOptIn) {
-  if (!env.BREVO_API_KEY) {
-    console.error("BREVO_API_KEY is missing.");
-  } else if (!env.BREVO_LIST_ID) {
-    console.error("BREVO_LIST_ID is missing.");
-  } else {
-    const brevoPayload = {
-      email,
-      attributes: {
-        FIRSTNAME: name,
-        SMS: phone
-      },
-      listIds: [Number(env.BREVO_LIST_ID)],
-      updateEnabled: true
-    };
+        const brevoRes = await fetch("https://api.brevo.com/v3/contacts", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "api-key": env.BREVO_API_KEY
+          },
+          body: JSON.stringify(brevoPayload)
+        });
 
-    console.log("Brevo payload:", JSON.stringify(brevoPayload));
-
-    const brevoRes = await fetch("https://api.brevo.com/v3/contacts", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "api-key": env.BREVO_API_KEY
-      },
-      body: JSON.stringify(brevoPayload)
-    });
-
-    const brevoText = await brevoRes.text();
-    console.log("Brevo response status:", brevoRes.status);
-    console.log("Brevo response body:", brevoText);
-
-    if (!brevoRes.ok) {
-      console.error("Brevo error:", brevoText);
+        if (!brevoRes.ok) {
+          const brevoText = await brevoRes.text();
+          console.error("Brevo error:", brevoText);
+        }
+      }
     }
-  }
-}
-    
 
     return json({ ok: true });
   } catch (err) {
@@ -196,6 +189,7 @@ function json(data, status = 200) {
     headers: { "Content-Type": "application/json" }
   });
 }
+
 function formatPhoneForBrevo(phone) {
   const digits = (phone || "").replace(/\D/g, "");
 
@@ -204,4 +198,3 @@ function formatPhoneForBrevo(phone) {
 
   return digits ? `+${digits}` : "";
 }
- 
