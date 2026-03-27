@@ -252,4 +252,3 @@ function formatPhoneForBrevo(phone) {
     marketingOptIn,
     note: "Brevo block did not run"
   }
-});
