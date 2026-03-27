@@ -1965,6 +1965,10 @@
                 <label class="field-full">Message
                   <textarea name="message" rows="6" required></textarea>
                 </label>
+                <label class="checkbox-row">
+                  <input type="checkbox" name="marketing_opt_in" value="yes">
+                  <span>Yes, I’d like occasional email updates about build availability, shop news, and completed projects.</span>
+                </label>
 
                 <div class="field-full">
                   <div class="cf-turnstile" data-sitekey="0x4AAAAAACX1GoTVIhQ0xV5o"></div>
@@ -2138,25 +2142,25 @@
               if (requestType === "Appointment") {
                 return {
                   title: "Appointment request received",
-                  body: "Thanks — we have received your appointment request. We’ll follow up to confirm details and scheduling."
+                  body: "Thank you — we have received your appointment request. We’ll follow up to confirm details and scheduling."
                 };
               }
               if (requestType === "Information") {
                 return {
                   title: "Information request received",
-                  body: "Thanks — we have received your request. We’ll be in touch soon."
+                  body: "Thank you — we have received your request. We’ll be in touch soon."
                 };
               }
               if (requestType === "Transfer") {
                 return {
                   title: "Transfer request received",
-                  body: "Thanks — we received your firearm transfer request. We’ll follow up with FFL details, next steps, and scheduling."
+                  body: "Thank you — we received your firearm transfer request. We’ll follow up with FFL details, next steps, and scheduling."
                 };
               }
 
               return {
                 title: "Request received",
-                body: "Thanks — we got your message. We’ll be in touch soon."
+                body: "Thank you — we received your request. We’ll be in touch soon."
               };
             }
 
