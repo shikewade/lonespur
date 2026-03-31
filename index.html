@@ -83,8 +83,8 @@
 
   .section-header {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
-  gap: 34px;
+  grid-template-columns: 280px minmax(720px, 1fr);
+  gap: 44px;
   align-items: end;
   margin-bottom: 34px;
   max-width: 100%;
@@ -93,13 +93,13 @@
 .section-header h2 {
   margin: 0 0 10px;
   font-family: "Oswald", system-ui, sans-serif;
-  font-size: clamp(2rem, 3.2vw, 3.1rem);
+  font-size: clamp(1.9rem, 2.6vw, 2.8rem);
   line-height: 1.02;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #fff;
-  max-width: 11ch;
-  text-wrap: balance;
+  max-width: none;
+  width: 100%;
 }
 
 .section-header p {
