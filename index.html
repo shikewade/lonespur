@@ -82,33 +82,34 @@
   }
 
   .section-header {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
-    gap: 24px;
-    align-items: end;
-    margin-bottom: 34px;
-    max-width: 100%;
-  }
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
+  gap: 34px;
+  align-items: end;
+  margin-bottom: 34px;
+  max-width: 100%;
+}
 
-  .section-header h2 {
-    margin: 0 0 12px;
-    font-family: "Oswald", system-ui, sans-serif;
-    font-size: clamp(2.5rem, 5vw, 3.6rem);
-    line-height: .98;
-    letter-spacing: 1.4px;
-    text-transform: uppercase;
-    color: #fff;
-  }
+.section-header h2 {
+  margin: 0 0 10px;
+  font-family: "Oswald", system-ui, sans-serif;
+  font-size: clamp(2rem, 3.2vw, 3.1rem);
+  line-height: 1.02;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #fff;
+  max-width: 11ch;
+  text-wrap: balance;
+}
 
-  .section-header p {
-    margin: 0;
-    color: var(--text-muted);
-    font-size: 1.02rem;
-    line-height: 1.8;
-    max-width: 38ch;
-    justify-self: end;
-  }
-
+.section-header p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+  max-width: 42ch;
+  justify-self: start;
+}
   .divider-line {
     width: 160px;
     height: 5px;
@@ -1851,7 +1852,7 @@
       <div class="container">
         <div class="section-header">
           <span class="eyebrow-dark">Firearm Sales and Transfers</span>
-          <h2>Appointment-based transfer support with clear next steps</h2>
+          <h2>Appointment-based firearm transfers</h2>
           <div class="divider-line"></div>
         </div>
 
