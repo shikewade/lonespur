@@ -520,17 +520,17 @@
   }
 
   .hero-inner {
-    position: relative;
-    z-index: 1;
-    min-height: inherit;
-    display: grid;
-    grid-template-columns: 1fr;
-    align-items: center;
-    justify-items: center;
-    gap: 18px;
-    padding: 42px 0 56px;
-    text-align: center;
-  }
+  position: relative;
+  z-index: 1;
+  min-height: inherit;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start; /* THIS is the key change */
+  justify-items: center;
+  gap: 12px;
+  padding: 20px 0 60px;
+  text-align: center;
+}
 
   .hero-copy {
     max-width: 900px;
@@ -543,7 +543,7 @@
 
   .hero-logo {
     width: min(820px, 98%);
-    margin: 0 auto 0;
+    margin: 0 auto -8px;
     filter:
       drop-shadow(0 14px 30px rgba(0,0,0,.42))
       drop-shadow(0 0 18px rgba(255,255,255,.05));
@@ -556,7 +556,7 @@
   }
 
   .hero h1 {
-    margin: 6px 0 12px;
+    margin: 0 0 10px;
     font-family: "Oswald", system-ui, sans-serif;
     font-size: clamp(3rem, 6.2vw, 5.4rem);
     line-height: .95;
