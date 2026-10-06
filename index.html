@@ -900,24 +900,24 @@
     margin-bottom: 6px;
   }
 
-  .gallery-caption span {
+  .-caption span {
     color: rgba(255,255,255,.82);
     font-size: .96rem;
   }
 
-  .gallery-stack {
+  .-stack {
     display: grid;
     gap: 24px;
   }
 
-  .gallery-tile {
+  .-tile {
     overflow: hidden;
     border-radius: 24px;
     min-height: 213px;
     box-shadow: var(--shadow-soft);
   }
 
-  .gallery-tile img {
+  .-tile img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -1770,40 +1770,47 @@
       </div>
     </section>
 
-    <section class="section" id="gallery">
-      <div class="container">
-        <div class="section-header">
-          <span class="eyebrow-dark">Gallery</span>
-          <h2></h2>
-          <div class="divider-line"></div>
-        </div>
+   <section class="section instagram-gallery" id="gallery">
+  <div class="container">
 
-        <div class="gallery-shell">
-          <div class="gallery-feature">
-            <img src="/images/DeerRifle 2.jpeg">
-            >
-            <div class="gallery-caption">
-              <strong>Craftsmanship</strong>
-              <span>Built around careful work, process, and detail</span>
-            </div>
-          </div>
+    <div class="section-header instagram-heading">
+      <span class="eyebrow-dark">From the Shop</span>
 
-          <div class="gallery-stack">
-            <div class="gallery-tile">
-              <img
-                src="/images/Seekins.jpg"
-              >
-            </div>
+      <h2>Latest Work</h2>
 
-            <div class="gallery-tile">
-              <img
-                src="/images/IMG_2708.jpeg""
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+      <div class="divider-line"></div>
+
+      <p>
+        Recent builds, gunsmithing work, shop updates, and projects
+        from Lone Spur Precision.
+      </p>
+    </div>
+
+    <div class="instagram-feed-shell">
+      <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
+
+      <iframe
+        src="https://lightwidget.com/widgets/83940c45218e5cb0a67f750c9655be73.html"
+        scrolling="no"
+        allowtransparency="true"
+        class="lightwidget-widget"
+        title="Lone Spur Precision Instagram gallery"
+      ></iframe>
+    </div>
+
+    <div class="instagram-footer">
+      <a
+        href="https://www.instagram.com/lonespurprecision/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-primary"
+      >
+        Follow @lonespurprecision
+      </a>
+    </div>
+
+  </div>
+</section>
 
     <section class="section dark-band" id="service-custom">
       <div class="container">
