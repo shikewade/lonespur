@@ -858,7 +858,7 @@
   background:
     radial-gradient(
       circle at 50% 0%,
-      rgba(168,132,68,.08),
+      rgba(168,132,68,.07),
       transparent 34%
     ),
     linear-gradient(
@@ -866,6 +866,7 @@
       #15191d 0%,
       #101316 100%
     );
+
   border-top: 1px solid rgba(255,255,255,.06);
   border-bottom: 1px solid rgba(255,255,255,.06);
 }
@@ -891,6 +892,7 @@
 .instagram-feed-shell {
   margin-top: 38px;
   padding: 18px;
+
   border-radius: 22px;
 
   background:
@@ -909,13 +911,8 @@
   overflow: hidden;
 }
 
-.lightwidget-widget {
-  display: block;
+.sk-instagram-feed {
   width: 100%;
-  min-height: 520px;
-  border: 0;
-  overflow: hidden;
-  background: transparent;
 }
 
 .instagram-footer {
@@ -929,10 +926,6 @@
     padding: 12px;
     border-radius: 18px;
   }
-
-  .lightwidget-widget {
-    min-height: 430px;
-  }
 }
 
 @media (max-width: 640px) {
@@ -941,14 +934,11 @@
     border-radius: 14px;
   }
 
-  .lightwidget-widget {
-    min-height: 380px;
-  }
-
   .instagram-footer .btn-primary {
     width: 100%;
     max-width: 320px;
   }
+}
 }
   .gallery-shell {
     display: grid;
@@ -1866,7 +1856,7 @@
       </div>
     </section>
 
-   <section class="section instagram-gallery" id="gallery">
+  <section class="section instagram-gallery" id="gallery">
   <div class="container">
 
     <div class="section-header instagram-heading">
@@ -1883,15 +1873,7 @@
     </div>
 
     <div class="instagram-feed-shell">
-      <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
-
-      <iframe
-        src="https://lightwidget.com/widgets/83940c45218e5cb0a67f750c9655be73.html"
-        scrolling="no"
-        allowtransparency="true"
-        class="lightwidget-widget"
-        title="Lone Spur Precision Instagram gallery"
-      ></iframe>
+      <div class="sk-instagram-feed" data-embed-id="25720015"></div>
     </div>
 
     <div class="instagram-footer">
@@ -1907,6 +1889,11 @@
 
   </div>
 </section>
+
+<script
+  src="https://widgets.sociablekit.com/instagram-feed/widget.js"
+  defer
+></script>
 
     <section class="section dark-band" id="service-custom">
       <div class="container">
